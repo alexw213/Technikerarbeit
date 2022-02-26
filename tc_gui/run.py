@@ -1,7 +1,7 @@
 from tkinter import *
 from rfid.read import read_rfid_tag
 from rfid.write import write_rfid_tag
-from tc_gui.user import User 
+from db.user import User 
 
 #%% gui
 root = Tk() # Fenster erstellen
