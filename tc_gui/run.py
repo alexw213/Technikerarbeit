@@ -1,6 +1,7 @@
 from tkinter import *
 from rfid.read import read_rfid_tag
 from rfid.write import write_rfid_tag
+from tc_gui.user import User 
 
 #%% gui
 root = Tk() # Fenster erstellen
@@ -27,19 +28,35 @@ rightFrame.grid(row=0, column=1, padx=10, pady=3)
 E1 = Entry(rightFrame, width=50)
 E1.grid(row=0, column=0, padx=10, pady=3)
  
-def callback1():
-    write_rfid_tag(E1.get())
+def callback_registrieren():
+    user_info = write_rfid_tag(E1.get())
 
-def callback2():
-    name = read_rfid_tag()
+    if User.find_by_username(user_info[1]):
+        print("Der Mitarbeiter wurde bereits registriert")
+
+    connection = sqlite3.connect('data.db')
+    cursor = connection.cursor()
+
+    TABLE_NAME = 'users'
+    query = "INSERT INTO {table} VALUES (NULL, ?, ?)".format(table=self.TABLE_NAME)
+    cursor.execute(query, (user_info[0], user_info[1]))
+
+    connection.commit()
+    connection.close()    
+
+def callback_auslesen():
+    user_info = read_rfid_tag()
+    if User.find_by_id(user_info[0]):
+        print("Der Mitarbeiter ist registriert")
+    print("Wer sind Sie?")
  
 buttonFrame = Frame(rightFrame)
 buttonFrame.grid(row=1, column=0, padx=10, pady=3)
     
-B1 = Button(buttonFrame, text="Registrieren", bg="#FF0000", width=15, command=callback1)
+B1 = Button(buttonFrame, text="Registrieren", bg="#FF0000", width=15, command=callback_registrieren)
 B1.grid(row=0, column=0, padx=10, pady=3)
  
-B2 = Button(buttonFrame, text="Chip auslesen", bg="#FFFF00", width=15, command=callback2)
+B2 = Button(buttonFrame, text="Chip auslesen", bg="#FFFF00", width=15, command=callback_auslesen)
 B2.grid(row=0, column=1, padx=10, pady=3)
  
 Slider = Scale(rightFrame, from_=0, to=100, resolution=0.1, orient=HORIZONTAL, length=400)
