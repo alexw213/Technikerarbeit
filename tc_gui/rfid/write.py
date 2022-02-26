@@ -6,7 +6,9 @@ def write_rfid_tag(name):
     try:
         print("Halten Sie jetzt den RFID-Chip ans Lesegeraet")
         reader.write(name)
-        print("Vorgang abgeschlossen")
+        id = reader.read()
+        print("Vorgang abgeschlossen mit ID '{}'".format(id))
+        return id
     except:
         print('Geht nicht')
     finally:

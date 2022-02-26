@@ -5,8 +5,6 @@ def read_rfid_tag():
     reader = SimpleMFRC522()
     try:
         id, text = reader.read()
-        print(id)
-        print(text)
-        return text
+        return id
     finally:
         GPIO.cleanup()
