@@ -1,6 +1,7 @@
 from tkinter import *
 from rfid.read import read_rfid_tag
 from rfid.write import write_rfid_tag
+import sqlite3
 from db.user import User 
 
 #%% gui
