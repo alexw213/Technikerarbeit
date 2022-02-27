@@ -8,7 +8,7 @@ def write_rfid_tag(name):
         reader.write(name)
         user_info = reader.read()
         print("Vorgang abgeschlossen mit ID '{}'".format(user_info[0]))
-        return id
+        return user_info
     except:
         print('Geht nicht')
     finally:
