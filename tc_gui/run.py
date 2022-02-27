@@ -48,7 +48,8 @@ def callback_registrieren():
 
 def callback_auslesen():
     user_info = read_rfid_tag()
-    print("Registrierter Nutzer:" + user_info[1])
+    print(user_info)
+    # print("Registrierter Nutzer:" + user_info[1])
     #if User.find_by_id(user_info[0]):
     #    print("Der Mitarbeiter ist registriert")
     #print("Wer sind Sie?")
