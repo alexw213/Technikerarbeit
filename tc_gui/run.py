@@ -40,7 +40,7 @@ def callback_registrieren():
         cursor = connection.cursor()
 
         TABLE_NAME = 'users'
-        query = "INSERT INTO {table} VALUES (NULL, ?, ?)".format(table=self.TABLE_NAME)
+        query = "INSERT INTO {table} VALUES (NULL, ?, ?)".format(table=TABLE_NAME)
         cursor.execute(query, (user_info[0], user_info[1]))
 
         connection.commit()
