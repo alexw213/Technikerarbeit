@@ -39,7 +39,7 @@ def callback_registrieren():
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
 
-        query = "INSERT INTO {table} VALUES (?, ?)".format('users')
+        query = "INSERT INTO {'users'} VALUES (?, ?)"
         cursor.execute(query, (user_info[0], user_info[1]))
 
         connection.commit()
