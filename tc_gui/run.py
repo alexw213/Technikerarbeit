@@ -31,18 +31,19 @@ E1.grid(row=0, column=0, padx=10, pady=3)
 def callback_registrieren():
     user_info = write_rfid_tag(E1.get())
 
-    if User.find_by_username(user_info[1]):
-        print("Der Mitarbeiter wurde bereits registriert")
+    try:
+        if User.find_by_username(user_info[1]):
+            print("Der Mitarbeiter wurde bereits registriert")
+    except:
+        connection = sqlite3.connect('data.db')
+        cursor = connection.cursor()
 
-    connection = sqlite3.connect('data.db')
-    cursor = connection.cursor()
+        TABLE_NAME = 'users'
+        query = "INSERT INTO {table} VALUES (NULL, ?, ?)".format(table=self.TABLE_NAME)
+        cursor.execute(query, (user_info[0], user_info[1]))
 
-    TABLE_NAME = 'users'
-    query = "INSERT INTO {table} VALUES (NULL, ?, ?)".format(table=self.TABLE_NAME)
-    cursor.execute(query, (user_info[0], user_info[1]))
-
-    connection.commit()
-    connection.close()    
+        connection.commit()
+        connection.close()    
 
 def callback_auslesen():
     user_info = read_rfid_tag()
