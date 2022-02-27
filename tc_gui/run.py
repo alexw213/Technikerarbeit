@@ -40,7 +40,8 @@ def callback_registrieren():
         cursor = connection.cursor()
 
         query = "INSERT INTO {'users'} VALUES (?, ?)"
-        cursor.execute(query, (user_info[0], user_info[1]))
+        #cursor.execute(query, (user_info[0], user_info[1]))
+        cursor.execute(query, (34, "sdfs")
 
         connection.commit()
         connection.close()    
