@@ -31,7 +31,7 @@ E1.grid(row=0, column=0, padx=10, pady=3)
  
 def callback_registrieren():
     user_info = write_rfid_tag(E1.get())
-    print("Registrierter Nutzer:" + user_info)
+    print("Registrierter Nutzer:" + user_info[1])
     # try:
     #     if User.find_by_username(user_info[1]):
     #         print("Der Mitarbeiter wurde bereits registriert")
@@ -48,7 +48,7 @@ def callback_registrieren():
 
 def callback_auslesen():
     user_info = read_rfid_tag()
-    print("Registrierter Nutzer:" + user_info)
+    print("Registrierter Nutzer:" + user_info[1])
     #if User.find_by_id(user_info[0]):
     #    print("Der Mitarbeiter ist registriert")
     #print("Wer sind Sie?")
