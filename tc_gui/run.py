@@ -31,26 +31,27 @@ E1.grid(row=0, column=0, padx=10, pady=3)
  
 def callback_registrieren():
     user_info = write_rfid_tag(E1.get())
+    print("Registrierter Nutzer:" + user_info)
+    # try:
+    #     if User.find_by_username(user_info[1]):
+    #         print("Der Mitarbeiter wurde bereits registriert")
+    # except:
+    #     connection = sqlite3.connect('data.db')
+    #     cursor = connection.cursor()
 
-    try:
-        if User.find_by_username(user_info[1]):
-            print("Der Mitarbeiter wurde bereits registriert")
-    except:
-        connection = sqlite3.connect('data.db')
-        cursor = connection.cursor()
+    #     query = "INSERT INTO {'users'} VALUES (?, ?)"
+    #     #cursor.execute(query, (user_info[0], user_info[1]))
+    #     cursor.execute(query, (33, "Raum"))
 
-        query = "INSERT INTO {'users'} VALUES (?, ?)"
-        #cursor.execute(query, (user_info[0], user_info[1]))
-        cursor.execute(query, (33, "Raum"))
-
-        connection.commit()
-        connection.close()    
+    #     connection.commit()
+    #     connection.close()    
 
 def callback_auslesen():
     user_info = read_rfid_tag()
-    if User.find_by_id(user_info[0]):
-        print("Der Mitarbeiter ist registriert")
-    print("Wer sind Sie?")
+    print("Registrierter Nutzer:" + user_info)
+    #if User.find_by_id(user_info[0]):
+    #    print("Der Mitarbeiter ist registriert")
+    #print("Wer sind Sie?")
  
 buttonFrame = Frame(rightFrame)
 buttonFrame.grid(row=1, column=0, padx=10, pady=3)
