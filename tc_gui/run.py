@@ -62,9 +62,6 @@ B1.grid(row=0, column=0, padx=10, pady=3)
  
 B2 = Button(buttonFrame, text="Chip auslesen", bg="#FFFF00", width=15, command=callback_auslesen)
 B2.grid(row=0, column=1, padx=10, pady=3)
- 
-Slider = Scale(rightFrame, from_=0, to=100, resolution=0.1, orient=HORIZONTAL, length=400)
-Slider.grid(row=2, column=0, padx=10, pady=3)
- 
- 
+
+
 root.mainloop() # GUI wird upgedatet. Danach keine Elemente setzen
