@@ -6,27 +6,15 @@ from db.user import User
 
 #%% gui
 root = Tk() # Fenster erstellen
-root.wm_title("Zeiterfassung") # Fenster Titel
-root.config(background = "#0066ff") # Hintergrundfarbe des Fensters
+root.wm_title("Time-Control") # Fenster Titel
+root.config(background = "#3399ff") # Hintergrundfarbe des Fensters
 
 
 # Hier kommen die Elemente hin
-leftFrame = Frame(root, width=200, height = 400)
-leftFrame.grid(row=0, column=0, padx=10, pady=3)
+Frame = Frame(root, width=700, height = 800)
+Frame.grid(row=0, column=0, padx=10, pady=3)
  
-leftLabel1 = Label(leftFrame, text="Platzhalter Text")
-leftLabel1.grid(row=0, column=0, padx=10, pady=3)
-leftLabel2 = Label(leftFrame, text="Dies ist ein Text\nmit mehreren Zeilen.")
-leftLabel2.grid(row=1, column=0, padx=10, pady=3)
- 
-#imageEx = PhotoImage(file = '200x200')
-#Label(leftFrame, image=imageEx).grid(row=2, column=0, padx=10, pady=3)
- 
- 
-rightFrame = Frame(root, width=400, height = 400)
-rightFrame.grid(row=0, column=1, padx=10, pady=3)
- 
-E1 = Entry(rightFrame, width=50)
+E1 = Entry(Frame, width=50)
 E1.grid(row=0, column=0, padx=10, pady=3)
  
 def callback_registrieren():
