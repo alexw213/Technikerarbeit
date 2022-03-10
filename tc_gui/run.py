@@ -11,10 +11,10 @@ root.config(background = "#3399ff") # Hintergrundfarbe des Fensters
 
 
 # Hier kommen die Elemente hin
-Frame = Frame(root, width=400, height = 400)
-Frame.grid(row=0, column=1, padx=10, pady=3)
+rightFrame = Frame(root, width=700, height = 1000)
+rightFrame.grid(row=0, column=1, padx=10, pady=3)
  
-E1 = Entry(Frame, width=50)
+E1 = Entry(rightFrame, width=50)
 E1.grid(row=0, column=0, padx=10, pady=3)
  
 def callback_registrieren():
@@ -42,7 +42,7 @@ def callback_auslesen():
     #    print("Der Mitarbeiter ist registriert")
     #print("Wer sind Sie?")
  
-buttonFrame = Frame(Frame)
+buttonFrame = Frame(rightFrame)
 buttonFrame.grid(row=1, column=0, padx=10, pady=3)
     
 B1 = Button(buttonFrame, text="Registrieren", bg="#FF0000", width=15, command=callback_registrieren)
