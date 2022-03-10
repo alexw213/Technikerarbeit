@@ -11,7 +11,7 @@ root.config(background = "#3399ff") # Hintergrundfarbe des Fensters
 
 
 # Hier kommen die Elemente hin
-rightFrame = Frame(root, width=700, height = 1000)
+rightFrame = Frame(root, width=2000, height = 3000)
 rightFrame.grid(row=0, column=1, padx=10, pady=3)
  
 E1 = Entry(rightFrame, width=50)
