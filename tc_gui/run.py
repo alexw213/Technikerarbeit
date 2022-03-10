@@ -42,7 +42,7 @@ def callback_auslesen():
     #    print("Der Mitarbeiter ist registriert")
     #print("Wer sind Sie?")
  
-buttonFrame = Frame(rightFrame)
+buttonFrame = Frame(Frame)
 buttonFrame.grid(row=1, column=0, padx=10, pady=3)
     
 B1 = Button(buttonFrame, text="Registrieren", bg="#FF0000", width=15, command=callback_registrieren)
