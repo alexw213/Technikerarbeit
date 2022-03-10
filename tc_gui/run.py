@@ -7,7 +7,7 @@ from db.user import User
 #%% gui
 root = Tk() # Fenster erstellen
 root.wm_title("Zeiterfassung") # Fenster Titel
-root.config(background = "#FFFFFF") # Hintergrundfarbe des Fensters
+root.config(background = "#0066ff") # Hintergrundfarbe des Fensters
 
 
 # Hier kommen die Elemente hin
