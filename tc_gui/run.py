@@ -6,7 +6,6 @@ from db.user import User
 
 #%% gui
 root = Tk() # Fenster erstellen
-root.geometry("800x400")
 root.wm_title("Time-Control") # Fenster Titel
 root.config(background = "#3399ff") # Hintergrundfarbe des Fensters
 
