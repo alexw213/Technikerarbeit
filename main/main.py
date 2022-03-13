@@ -12,7 +12,7 @@ root.geometry("1200x800")
 def say_hello():
     print("Have a nice workday!")
 
-button1 = ttk.Button(root, text = "Coming", padding=40, width=30, command=say_hello)
+button1 = ttk.Button(root, text = "Coming", padding=50, command=say_hello)
 button1.pack(side="left")
 
 for item in button1.keys():
@@ -22,7 +22,7 @@ for item in button1.keys():
 def say_bye():
     print("Have a nice closing time!")
 
-button2 = ttk.Button(root, text = "Leaving", padding=40, width=30, command=say_bye)
+button2 = ttk.Button(root, text = "Leaving", padding=50, command=say_bye)
 button2.pack(side="right")
 
 #Button 3
