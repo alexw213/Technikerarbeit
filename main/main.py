@@ -3,34 +3,34 @@ import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 
 root = tk.Tk()  # Fenster erstellen
-root.wm_title("Time-Control")  # Fenster - Titel
-root.config(background="#3399ff")  # Hintergrundfarbe des Fensters
-root.geometry("1200x800")  # GUI-Fenstergröße bestimmen
+root.wm_title('Time-Control')  # Fenster - Titel
+root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
+root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 
 
 #%% --- GUI ---
 
 # Button 1
 def say_hello():
-    print("Have a nice workday!")
+    print('Have a nice workday!')
 
 button1 = Button(root,
-                 text="Coming",
+                 text='Coming',
                  padx=50, pady=50,
+                 bg='#00cd00',
                  command=say_hello)
-button1.pack(side="left", padx=20, pady=50)
+button1.pack(side='left', padx=20, pady=50)
 
 
 # Button 2
 def say_bye():
-    print("Have a nice closing time!")
+    print('Have a nice closing time!')
 
-button2 = Button(root, text="Leaving",
+button2 = Button(root, text='Leaving',
                  padx=50, pady=50,
+                 bg='red',
                  command=say_bye)
-button2.pack(side="right", padx=20, pady=50)
-
-
+button2.pack(side='right', padx=20, pady=50)
 
 
 #%% Registration on a new window
@@ -61,17 +61,17 @@ if __name__ == '__main__':
     popup = tk.Toplevel(root)
     ents = makeform(popup, fields)
     popup.bind('<Return>', (lambda event, e=ents: fetch(e)))
-    b1 = Button(popup, text='Show',
+
+    b1 = Button(popup, text='Confirm',
           command=(lambda e=ents: fetch(e)))
     b1.pack(side=LEFT, padx=5, pady=5)
-    b2 = Button(popup, text='Quit', command=popup.quit)
-    b2.pack(side=LEFT, padx=5, pady=5)
 
-    b3 = tk.Button(root,
-                text="Registration",
+
+    b2 = tk.Button(root,
+                text='Registration',
                 padx=20, pady=10,
                 command=createNewWindow)
-    b3.pack(side="bottom", fill="x", pady=20)
+    b2.pack(side='bottom', fill='x', pady=20)
 
 
 root.mainloop()
