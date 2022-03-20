@@ -3,6 +3,10 @@ import tkinter as tk  # tkinter abkürzen mit tk
 import sqlite3
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
+import time
+
+from setuptools._distutils.command.config import config
+
 from rfid import read
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
@@ -32,10 +36,15 @@ def einchipen():
         vorname = row[0]
         nachname = row[1]
 
+    connection.commit()
+    connection.close()
+
     name = str(vorname) + " " + str(nachname)
 
-    Label(root, text="Einen schönen Arbeitstag " + name, font="Verdana 18 bold").pack(side=TOP, padx=20, pady=20)
+    Label(root, text="Einen schönen Arbeitstag " + name + "!", font="Verdana 18 bold").pack(side=TOP, padx=20, pady=100)
     #messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
+    time.sleep(5)
+    Label.quit()
 
 kommen = Button(root,
                  text='Kommen',
@@ -46,14 +55,39 @@ kommen.pack(side='left', padx=20, pady=50)
 
 
 # Button 2
-def say_bye():
-    print('Einen schönen Feierabend!')
+def auschipen():
+
+    user_info = read.read_rfid_tag()
+    id = user_info[0]
+
+    connection = sqlite3.connect('data.db')
+    cursor = connection.cursor()
+    query = "select vorname, nachname from user where rfidtag = " + str(id)
+    cursor.execute(query)
+
+    result = cursor.fetchall()  # lese alle tabellen einträge in die tabellenvariable "result"
+
+    vorname = ""
+    nachname = ""
+    for row in result:
+        vorname = row[0]
+        nachname = row[1]
+
+    connection.commit()
+    connection.close()
+
+    name = str(vorname) + " " + str(nachname)
+
+    Label(root, text="Einen schönen Feierabend " + name + "!", font="Verdana 18 bold").pack(side=TOP, padx=20, pady=100)
+    # messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
+    time.sleep(5)
+    Label.quit()
 
 
 gehen = Button(root, text='Gehen',
                  padx=50, pady=50,
                  bg='red',
-                 command=say_bye)
+                 command=auschipen)
 gehen.pack(side='right', padx=20, pady=50)
 
 #%% ---Registrierung im neuen Fenster---
