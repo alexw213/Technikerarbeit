@@ -41,7 +41,7 @@ def einchipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    label = Label(root,
+    label = tk.Label(root,
                      text="Einen schönen Arbeitstag " + name + "!",
                      font="Verdana 18 bold")
     label.pack(side=TOP, padx=20, pady=20)
@@ -81,7 +81,7 @@ def auschipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    label = Label(root,
+    label = tk.Label(root,
                      text="Einen schönen Feierabend " + name + "!",
                      font="Verdana 18 bold")
     label.pack(side=TOP, padx=20, pady=20)
