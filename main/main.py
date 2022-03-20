@@ -22,7 +22,6 @@ def einchipen():
     user_info = read.read_rfid_tag()
     id = user_info[0]
 
-
     connection = sqlite3.connect('data.db')
     cursor = connection.cursor()
     query = "select vorname, nachname from user where rfidtag = " + str(id)
@@ -41,13 +40,8 @@ def einchipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    label = tk.Label(root,
-                     text="Einen schönen Arbeitstag " + name + "!",
-                     font="Verdana 18 bold")
-    label.pack(side=TOP, padx=20, pady=20)
-    #messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
-    time.sleep(5)
-    label.after(1000, label.destroy())
+    messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
+
 
 kommen = Button(root,
                  text='Kommen',
@@ -81,13 +75,7 @@ def auschipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    label = tk.Label(root,
-                     text="Einen schönen Feierabend " + name + "!",
-                     font="Verdana 18 bold")
-    label.pack(side=TOP, padx=20, pady=20)
-    # messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
-    time.sleep(5)
-    label.after(1000, label.destroy())
+    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name)
 
 
 gehen = Button(root, text='Gehen',
