@@ -3,6 +3,7 @@ import tkinter as tk  # tkinter abkürzen mit tk
 import sqlite3
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
+from datetime import datetime
 import time
 
 from setuptools._distutils.command.config import config
@@ -40,7 +41,8 @@ def einchipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
+
+    messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Arbeitszeit: " + str(datetime))
 
 
 kommen = Button(root,
@@ -75,7 +77,7 @@ def auschipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name)
+    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Arbeitszeit: " + str(datetime))
 
 
 gehen = Button(root, text='Gehen',
