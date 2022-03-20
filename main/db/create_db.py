@@ -11,7 +11,7 @@ create_table = "CREATE TABLE IF NOT EXISTS user (vorname text, " \
                "email text, rfidtag int, PRIMARY KEY (rfidtag))"
 cursor.execute(create_table)
 
-create_table = "CREATE TABLE IF NOT EXISTS protocol (rfidtag INT, zeitpunkt TIMESTAMP, reg_art TEXT)"
+create_table = "CREATE TABLE IF NOT EXISTS protocol (rfidtag INT, zeitpunkt DATETIME, reg_art TEXT)"
 cursor.execute(create_table)
 
 connection.commit()
