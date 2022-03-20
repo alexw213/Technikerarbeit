@@ -41,8 +41,9 @@ def einchipen():
 
     name = str(vorname) + " " + str(nachname)
 
-
-    messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Arbeitszeit: " + str(datetime))
+    datet = datetime.now()
+    strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
+    messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Arbeitszeit: " + str(strdate))
 
 
 kommen = Button(root,
@@ -77,7 +78,9 @@ def auschipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Arbeitszeit: " + str(datetime))
+    datet = datetime.now()
+    strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
+    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Arbeitszeit: " + strdate)
 
 
 gehen = Button(root, text='Gehen',
