@@ -159,6 +159,7 @@ def register():
         query2 = """Select * from user"""
         cursor.execute(query2)
         result = cursor.fetchall()
+        connection.commit()
 
         for row in result:
             print(row)
@@ -190,10 +191,13 @@ def get_protocol():
             " FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag"
     cursor.execute(query)
     result = cursor.fetchall()
+    connection.commit()
 
     popup_p = tk.Toplevel(root)
     for row in result:
         Label(popup_p, text=row).grid(row=0)
+
+    connection.close()
 
 protokoll = Button(root, text='Protokoll anzeigen',
                  padx=20, pady=20,
