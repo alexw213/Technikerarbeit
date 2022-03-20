@@ -41,13 +41,13 @@ def einchipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    label = tk.Label(root,
+    label = Label(root,
                      text="Einen schönen Arbeitstag " + name + "!",
                      font="Verdana 18 bold")
     label.pack(side=TOP, padx=20, pady=20)
-    label.master.geometry("+250+250")
     #messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
-    label.after(5000, label.master.destroy)
+    time.sleep(5)
+    label.after(1000, label.destroy())
 
 kommen = Button(root,
                  text='Kommen',
@@ -81,13 +81,13 @@ def auschipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    label = tk.Label(root,
+    label = Label(root,
                      text="Einen schönen Feierabend " + name + "!",
                      font="Verdana 18 bold")
     label.pack(side=TOP, padx=20, pady=20)
-    label.master.geometry("+250+250")
     # messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
-    label.after(5000, label.master.destroy)
+    time.sleep(5)
+    label.after(1000, label.destroy())
 
 
 gehen = Button(root, text='Gehen',
