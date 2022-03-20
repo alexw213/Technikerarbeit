@@ -43,7 +43,7 @@ def chip_in():
     sec = str(datet.second)[:2]
     strdate = str(datet.year) + "-" + str(datet.month) + "-" + str(datet.day)
     strtime = str(datet.hour) + ":" + str(datet.minute) + ":" + str(sec)
-    query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(strdate) + str(strtime) + ",Eingechipt)"
+    query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(strdate) + "," + str(strtime) + ",Kommen)"
     cursor.execute(query)
     connection.commit()
 
@@ -84,7 +84,7 @@ def chip_out():
 
     # Protokoll schreiben
     datet = datetime.now()  # Klassenmethode importiert
-    query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(datet) + ",Ausgechipt)"
+    query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(datet) + ",Gehen)"
     cursor.execute(query)
     connection.commit()
 
