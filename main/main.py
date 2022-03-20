@@ -22,7 +22,10 @@ def chip_in():
     user_info = read.read_rfid_tag()
     id = user_info[0]
 
-    connection = sqlite3.connect('data.db')
+    # Verbindungsaufbau Datenbank
+    connection = sqlite3.connect('db/data.db')
+
+    # User-Tabelle nach ID auslesen
     cursor = connection.cursor()
     query = "select vorname, nachname from user where rfidtag = " + str(id)
     cursor.execute(query)
@@ -35,12 +38,16 @@ def chip_in():
         vorname = row[0]
         nachname = row[1]
 
+    # Protokoll schreiben
+    datet = datetime.now()  # Klassenmethode importiert
+    query = "INSERT INTO protocol VALUES (" + id + "," + datet + ",Eingechipt)"
+    cursor.execute(query)
     connection.commit()
+
     connection.close()
 
     name = str(vorname) + " " + str(nachname)
 
-    datet = datetime.now()
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
     messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Zeitpunkt: " + str(strdate) + " Uhr")
 
@@ -59,7 +66,7 @@ def chip_out():
     user_info = read.read_rfid_tag()
     id = user_info[0]
 
-    connection = sqlite3.connect('data.db')
+    connection = sqlite3.connect('db/data.db')
     cursor = connection.cursor()
     query = "select vorname, nachname from user where rfidtag = " + str(id)
     cursor.execute(query)
@@ -72,12 +79,17 @@ def chip_out():
         vorname = row[0]
         nachname = row[1]
 
+    # Protokoll schreiben
+    datet = datetime.now()  # Klassenmethode importiert
+    query = "INSERT INTO protocol VALUES (" + id + "," + datet + ",Ausgechipt)"
+    cursor.execute(query)
     connection.commit()
+
     connection.close()
 
     name = str(vorname) + " " + str(nachname)
 
-    datet = datetime.now()
+    datet = datetime.now() #Klassenmethode importiert
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
     messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " + strdate + " Uhr")
 
@@ -90,8 +102,8 @@ gehen.pack(side='right', padx=20, pady=50)
 
 #%% ---Registrierung im neuen Fenster---
 
-
-def onclick():
+# Button 3
+def register():
     popup = tk.Toplevel(root)
 
     Label(popup, text='Vorname').grid(row=0)
@@ -126,13 +138,7 @@ def onclick():
        # print('Mitarbeiter ist registriert!')
 
     # %% --- RFID registration ---
-    def register():
-        #user_info = write_rfid_tag(E1.get())
-        # print("Registered User:" + user_info[1])
-        # try:
-        #     if User.find_by_username(user_info[1]):
-        #         print("Employee is already registered")
-        # except:
+    def save():
 
         e1s = e1.get()
         e2s = e2.get()
@@ -143,26 +149,17 @@ def onclick():
         e7s = e7.get()
         e8s = e8.get()
 
-        connection = sqlite3.connect('data.db')
+        connection = sqlite3.connect('db/data.db')
         cursor = connection.cursor()
 
-        create_table = "CREATE TABLE IF NOT EXISTS user (vorname text, " \
-                       "nachname text, geburtsdatum date, familienstand text, adresse text, telefonnummer int, " \
-                       "email text, rfidtag int, PRIMARY KEY (rfidtag))"
-        cursor.execute(create_table)
-
-        #query = 'INSERT INTO user VALUES (' + str(e1) + ',' + str(e2) + ',' + str(e3) + ',' + str(e4) + ',' +\
-         #       str(e5) + ',' + str(e6) + ',' + str(e7) + ',' + str(e8) + ')'
-        #query = "INSERT INTO user VALUES (" + str(e1) + "," + str(e2) + "," + str(e3) + "," + str(e4) + "," +\
-              #  str(e5) + "," + str(e6) + "," + str(e7) + "," + str(e8) + ")"
         query = """INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ? ,?) """
         cursor.execute(query, (str(e1s), str(e2s), str(e3s), str(e4s), str(e5s), str(e6s), str(e7s), str(e8s)))
-    #     cursor.execute(query, (33, "Raum"))
         connection.commit()
 
         query2 = """Select * from user"""
         cursor.execute(query2)
         result = cursor.fetchall()
+        connection.commit()
 
         for row in result:
             print(row)
@@ -175,32 +172,38 @@ def onclick():
 
     b1 = tk.Button(popup,
                    text='Registrieren',
-                   command=register)
+                   command=save)
     b1.grid(row=8, column=1)
 
 
-# Button 3
 registrieren = Button(root, text='Registrierung',
                  padx=20, pady=20,
-                 command=onclick)
+                 command=register)
 registrieren.pack(side='bottom', fill='x', padx=20, pady=30)
 
-"""
-def write_protocol(_id):
-    connection = sqlite3.connect('data.db')
+# Button 4
+def get_protocol():
+
+    connection = sqlite3.connect('db/data.db')
     cursor = connection.cursor()
-"""
 
+    query = "SELECT user.vorname user.nachname protocol.zeitpunkt protocol.reg_art" \
+            " FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    connection.commit()
 
-'''
-def callback_reading():
-    user_info = read_rfid_tag()
-    print(user_info)
-    # print("Registered User:" + user_info[1])
-    #if User.find_by_id(user_info[0]):
-    #    print("Employee registered")
-    #print("Wer sind Sie?")
-'''
+    popup_p = tk.Toplevel(root)
+    for row in result:
+        Label(popup_p, text=row).grid(row=0)
+
+    connection.close()
+
+protokoll = Button(root, text='Protokoll anzeigen',
+                 padx=20, pady=20,
+                 command=get_protocol)
+protokoll.pack(side='top', fill='x', padx=20, pady=30)
+
 
 root.mainloop()
 
