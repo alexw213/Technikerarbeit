@@ -44,12 +44,12 @@ def chip_in():
     cursor.execute(query)
     connection.commit()
 
-    connection.close()
-
     name = str(vorname) + " " + str(nachname)
 
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
     messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Zeitpunkt: " + str(strdate) + " Uhr")
+
+    connection.close()
 
 
 kommen = Button(root,
@@ -85,14 +85,13 @@ def chip_out():
     cursor.execute(query)
     connection.commit()
 
-    connection.close()
-
     name = str(vorname) + " " + str(nachname)
 
     datet = datetime.now() #Klassenmethode importiert
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
     messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " + strdate + " Uhr")
 
+    connection.close()
 
 gehen = Button(root, text='Gehen',
                  padx=50, pady=50,
