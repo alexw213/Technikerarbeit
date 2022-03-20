@@ -69,7 +69,7 @@ def onclick():
     e7.grid(row=6, column=1)
     e8.grid(row=7, column=1)
 
-    # Registrierungsbutton
+    # Registriersvorgang
 
     def bestätigen():
         print('Mitarbeiter ist registriert!')
@@ -79,6 +79,10 @@ def onclick():
                 command=bestätigen)
     b1.grid(row=8, column=1)
 
+registrieren = Button(root, text='Registrierung',
+                 padx=20, pady=20,
+                 command=onclick)
+registrieren.pack(side='bottom', fill='x', padx=20, pady=50)
 
 #%% --- RFID registration ---
 def callback_register():
