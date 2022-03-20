@@ -34,7 +34,7 @@ def einchipen():
 
     name = str(vorname) + " " + str(nachname)
 
-    Label(root, text="Einen schönen Arbeitstag " + name).pack(side=TOP, padx=20, pady=20)
+    Label(root, text="Einen schönen Arbeitstag " + name, font="Verdana 18 bold").pack(side=TOP, padx=20, pady=20)
     #messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
 
 kommen = Button(root,
