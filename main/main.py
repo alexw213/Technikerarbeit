@@ -32,7 +32,7 @@ def say_hello():
         vorname = row[0]
         nachname = row[1]
 
-    name = vorname + " " + nachname
+    name = str(vorname) + " " + str(nachname)
 
     messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
 
