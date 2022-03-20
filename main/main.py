@@ -4,11 +4,10 @@ import sqlite3
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
 from datetime import datetime
-import time
-
-from setuptools._distutils.command.config import config
-
 from rfid import read
+#from setuptools._distutils.command.config import config
+
+
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
 root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
@@ -18,7 +17,7 @@ root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 #%% ---GUI---
 
 # Button 1
-def einchipen():
+def chip_in():
 
     user_info = read.read_rfid_tag()
     id = user_info[0]
@@ -43,19 +42,19 @@ def einchipen():
 
     datet = datetime.now()
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
-    messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Arbeitszeit: " + str(strdate))
+    messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Zeitpunkt: " + str(strdate) + " Uhr")
 
 
 kommen = Button(root,
                  text='Kommen',
                  padx=50, pady=50,
                  bg='#00cd00',
-                 command=einchipen)
+                 command=chip_in)
 kommen.pack(side='left', padx=20, pady=50)
 
 
 # Button 2
-def auschipen():
+def chip_out():
 
     user_info = read.read_rfid_tag()
     id = user_info[0]
@@ -80,13 +79,13 @@ def auschipen():
 
     datet = datetime.now()
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
-    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Arbeitszeit: " + strdate)
+    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " + strdate + " Uhr")
 
 
 gehen = Button(root, text='Gehen',
                  padx=50, pady=50,
                  bg='red',
-                 command=auschipen)
+                 command=chip_out)
 gehen.pack(side='right', padx=20, pady=50)
 
 #%% ---Registrierung im neuen Fenster---
@@ -185,6 +184,12 @@ registrieren = Button(root, text='Registrierung',
                  padx=20, pady=20,
                  command=onclick)
 registrieren.pack(side='bottom', fill='x', padx=20, pady=30)
+
+"""
+def write_protocol(_id):
+    connection = sqlite3.connect('data.db')
+    cursor = connection.cursor()
+"""
 
 
 '''
