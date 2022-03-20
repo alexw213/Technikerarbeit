@@ -40,7 +40,7 @@ def chip_in():
 
     # Protokoll schreiben
     datet = datetime.now()  # Klassenmethode importiert
-    strdate = str(datet.year) + "-" + str(datet.month) + "-" + str(datet.day) + " " + str(datet.hour) + ":" + str(datet.minute) + ":" + str(datet.second)
+    strdate = str(datet.year) + "-" + str(datet.month) + "-" + str(datet.day) + "" + str(datet.hour) + ":" + str(datet.minute) + ":" + str(datet.second)
     query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(strdate) + ",Eingechipt)"
     cursor.execute(query)
     connection.commit()
