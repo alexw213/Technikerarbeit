@@ -13,8 +13,7 @@ root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 #%% ---GUI---
 
 # Button 1
-def say_hello():
-    print('Einen schönen Arbeitstag!')
+def einchipen():
 
     user_info = read.read_rfid_tag()
     id = user_info[0]
@@ -35,13 +34,14 @@ def say_hello():
 
     name = str(vorname) + " " + str(nachname)
 
-    messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
+    Label(root, text="Einen schönen Arbeitstag " + name).pack(side=TOP, padx=20, pady=20)
+    #messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
 
 kommen = Button(root,
                  text='Kommen',
                  padx=50, pady=50,
                  bg='#00cd00',
-                 command=say_hello)
+                 command=einchipen)
 kommen.pack(side='left', padx=20, pady=50)
 
 
