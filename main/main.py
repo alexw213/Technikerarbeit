@@ -47,8 +47,7 @@ def einchipen():
     label.pack(side=TOP, padx=20, pady=20)
     label.master.geometry("+250+250")
     #messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
-    time.sleep(5)
-    label.destroy()
+    label.after(5000, label.master.destroy)
 
 kommen = Button(root,
                  text='Kommen',
@@ -88,8 +87,7 @@ def auschipen():
     label.pack(side=TOP, padx=20, pady=20)
     label.master.geometry("+250+250")
     # messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
-    time.sleep(5)
-    label.destroy()
+    label.after(5000, label.master.destroy)
 
 
 gehen = Button(root, text='Gehen',
