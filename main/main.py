@@ -1,21 +1,17 @@
 import tkinter as tk  # tkinter abkürzen mit tk
+import sqlite3
 from tkinter import *  # Importierung der ttk-Widgets
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
 root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
 root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
-"""
-from rfid.read import read_rfid_tag
-from rfid.write import write_rfid_tag
-import sqlite3
-from db.user import User
-"""
 
 #%% ---GUI---
 
 # Button 1
 def say_hello():
     print('Einen schönen Arbeitstag!')
+
 
 kommen = Button(root,
                  text='Kommen',
@@ -29,6 +25,7 @@ kommen.pack(side='left', padx=20, pady=50)
 def say_bye():
     print('Einen schönen Feierabend!')
 
+
 gehen = Button(root, text='Gehen',
                  padx=50, pady=50,
                  bg='red',
@@ -37,18 +34,18 @@ gehen.pack(side='right', padx=20, pady=50)
 
 #%% ---Registrierung im neuen Fenster---
 
+
 def onclick():
     popup = tk.Toplevel(root)
 
-    Label(popup, text="Vorname").grid(row=0)
-    Label(popup, text="Nachname").grid(row=1)
-    Label(popup, text="Geburtsdatum").grid(row=2)
-    Label(popup, text="Familienstand").grid(row=3)
-    Label(popup, text="Adresse").grid(row=4)
-    Label(popup, text="Telefonnummer").grid(row=5)
-    Label(popup, text="E-Mail").grid(row=6)
-    Label(popup, text="RFID-Tag").grid(row=7)
-
+    Label(popup, text='Vorname').grid(row=0)
+    Label(popup, text='Nachname').grid(row=1)
+    Label(popup, text='Geburtsdatum').grid(row=2)
+    Label(popup, text='Familienstand').grid(row=3)
+    Label(popup, text='Adresse').grid(row=4)
+    Label(popup, text='Telefonnummer').grid(row=5)
+    Label(popup, text='E-Mail').grid(row=6)
+    Label(popup, text='RFID-Tag').grid(row=7)
 
     e1 = Entry(popup)
     e2 = Entry(popup)
@@ -59,7 +56,6 @@ def onclick():
     e7 = Entry(popup)
     e8 = Entry(popup)
 
-
     e1.grid(row=0, column=1)
     e2.grid(row=1, column=1)
     e3.grid(row=2, column=1)
@@ -69,39 +65,58 @@ def onclick():
     e7.grid(row=6, column=1)
     e8.grid(row=7, column=1)
 
-    # Registriersvorgang
+    # Registriervorgang
+    #def bestätigen():
+       # print('Mitarbeiter ist registriert!')
 
-    def bestätigen():
-        print('Mitarbeiter ist registriert!')
+    # %% --- RFID registration ---
+    def register():
+        #user_info = write_rfid_tag(E1.get())
+        # print("Registered User:" + user_info[1])
+        # try:
+        #     if User.find_by_username(user_info[1]):
+        #         print("Employee is already registered")
+        # except:
+        connection = sqlite3.connect('data.db')
+        cursor = connection.cursor()
+
+        create_table = "CREATE TABLE IF NOT EXISTS user (vorname text, " \
+                       "nachname text, geburtsdatum date, familienstand text, adresse text, telefonnummer int, " \
+                       "email text, rfidtag int, PRIMARY KEY (rfidtag))"
+        cursor.execute(create_table)
+
+        #query = 'INSERT INTO user VALUES (' + str(e1) + ',' + str(e2) + ',' + str(e3) + ',' + str(e4) + ',' +\
+         #       str(e5) + ',' + str(e6) + ',' + str(e7) + ',' + str(e8) + ')'
+        query = """INSERT INTO user(vorname, nachname, geburtsdatum, familienstand, adresse, telefonnummer, email,
+         rfidtag) VALUES ('dsada', 'dsada', 19910926, 'leid', 'hert 3', 9899979, 'jdsadas', 321312)"""
+        cursor.execute(query)
+    #     cursor.execute(query, (33, "Raum"))
+        connection.commit()
+
+        query2 = """Select * from user"""
+        cursor.execute(query2)
+        result = cursor.fetchall()
+
+        for row in result:
+            print(row)
+            print("\n")
+
+        connection.close()
 
     b1 = tk.Button(popup,
-                text='Bestätigung',
-                command=bestätigen)
+                   text='Bestätigung',
+                   command=register)
     b1.grid(row=8, column=1)
 
+
+# Button 3
 registrieren = Button(root, text='Registrierung',
                  padx=20, pady=20,
                  command=onclick)
-registrieren.pack(side='bottom', fill='x', padx=20, pady=50)
+registrieren.pack(side='bottom', fill='x', padx=20, pady=30)
 
-#%% --- RFID registration ---
-def callback_register():
-    user_info = write_rfid_tag(E1.get())
-    print("Registered User:" + user_info[1])
-    # try:
-    #     if User.find_by_username(user_info[1]):
-    #         print("Employee is already registered")
-    # except:
-    #     connection = sqlite3.connect('data.db')
-    #     cursor = connection.cursor()
 
-    #     query = "INSERT INTO {'users'} VALUES (?, ?)"
-    #     #cursor.execute(query, (user_info[0], user_info[1]))
-    #     cursor.execute(query, (33, "Raum"))
-
-    #     connection.commit()
-    #     connection.close()    
-
+'''
 def callback_reading():
     user_info = read_rfid_tag()
     print(user_info)
@@ -109,7 +124,7 @@ def callback_reading():
     #if User.find_by_id(user_info[0]):
     #    print("Employee registered")
     #print("Wer sind Sie?")
-
+'''
 
 root.mainloop()
 
