@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# write reader
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 reader = SimpleMFRC522()
@@ -9,6 +9,17 @@ try:
     print("Done...")
 except:
     print('Geht nicht')
+finally:
+    GPIO.cleanup()
+
+# read reader
+import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+reader = SimpleMFRC522()
+try:
+    id, text = reader.read()
+    print(id)
+    print(text)
 finally:
     GPIO.cleanup()
 

@@ -4,80 +4,82 @@ root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
 root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
 root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
-
+"""
 from rfid.read import read_rfid_tag
 from rfid.write import write_rfid_tag
 import sqlite3
 from db.user import User
+"""
 
-
-#%% --- GUI ---
+#%% ---GUI---
 
 # Button 1
 def say_hello():
-    print('Have a nice workday!')
+    print('Einen schönen Arbeitstag!')
 
-button1 = Button(root,
-                 text='Coming',
+kommen = Button(root,
+                 text='Kommen',
                  padx=50, pady=50,
                  bg='#00cd00',
                  command=say_hello)
-button1.pack(side='left', padx=20, pady=50)
+kommen.pack(side='left', padx=20, pady=50)
 
 
 # Button 2
 def say_bye():
-    print('Have a nice closing time!')
+    print('Einen schönen Feierabend!')
 
-button2 = Button(root, text='Leaving',
+gehen = Button(root, text='Gehen',
                  padx=50, pady=50,
                  bg='red',
                  command=say_bye)
-button2.pack(side='right', padx=20, pady=50)
+gehen.pack(side='right', padx=20, pady=50)
 
+#%% ---Registrierung im neuen Fenster---
 
-# Registration on a new window
-def createNewWindow():
+def onclick():
     popup = tk.Toplevel(root)
 
-fields = 'Last Name', 'First Name', 'Date of Birth', 'Marital status' , 'Adress' , 'Phone number' , 'E-Mail' , 'RFID-Tag'
+    Label(popup, text="Vorname").grid(row=0)
+    Label(popup, text="Nachname").grid(row=1)
+    Label(popup, text="Geburtsdatum").grid(row=2)
+    Label(popup, text="Familienstand").grid(row=3)
+    Label(popup, text="Adresse").grid(row=4)
+    Label(popup, text="Telefonnummer").grid(row=5)
+    Label(popup, text="E-Mail").grid(row=6)
+    Label(popup, text="RFID-Tag").grid(row=7)
 
-def fetch(entries):
-   for entry in entries:
-      field = entry[0]
-      text  = entry[1].get()
-      print('%s: "%s"' % (field, text))
 
-def makeform(root, fields):
-   entries = []
-   for field in fields:
-      row = Frame(root)
-      lab = Label(row, width=15, text=field, anchor='w')
-      ent = Entry(row)
-      row.pack(side=TOP, fill=X, padx=5, pady=5)
-      lab.pack(side=LEFT)
-      ent.pack(side=RIGHT, expand=YES, fill=X)
-      entries.append((field, ent))
-   return entries
+    e1 = Entry(popup)
+    e2 = Entry(popup)
+    e3 = Entry(popup)
+    e4 = Entry(popup)
+    e5 = Entry(popup)
+    e6 = Entry(popup)
+    e7 = Entry(popup)
+    e8 = Entry(popup)
 
-if __name__ == '__main__':
-    popup = tk.Toplevel(root)
-    ents = makeform(popup, fields)
-    popup.bind('<Return>', (lambda event, e=ents: fetch(e)))
 
-    b1 = Button(popup, text='Confirm',
-          command=(lambda e=ents: fetch(e)))
-    b1.pack(side=LEFT, padx=5, pady=5)
+    e1.grid(row=0, column=1)
+    e2.grid(row=1, column=1)
+    e3.grid(row=2, column=1)
+    e4.grid(row=3, column=1)
+    e5.grid(row=4, column=1)
+    e6.grid(row=5, column=1)
+    e7.grid(row=6, column=1)
+    e8.grid(row=7, column=1)
 
-# when you put b2 it must open a new window with the entries above, but it doesn't work
-    b2 = tk.Button(root,
-                text='Registration',
-                padx=20, pady=10,
-                command=createNewWindow)
-    b2.pack(side='bottom', fill='x', pady=20)
+    # Registrierungsbutton
 
-#here i wanted to try the RFID-registration, but it doesn't work
-""" 
+    def bestätigen():
+        print('Mitarbeiter ist registriert!')
+
+    b1 = tk.Button(popup,
+                text='Bestätigung',
+                command=bestätigen)
+    b1.grid(row=8, column=1)
+
+
 #%% --- RFID registration ---
 def callback_register():
     user_info = write_rfid_tag(E1.get())
@@ -103,7 +105,7 @@ def callback_reading():
     #if User.find_by_id(user_info[0]):
     #    print("Employee registered")
     #print("Wer sind Sie?")
-"""
+
 
 root.mainloop()
 
