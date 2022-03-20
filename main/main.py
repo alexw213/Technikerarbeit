@@ -19,9 +19,10 @@ def say_hello():
     user_info = read.read_rfid_tag()
     id = user_info[0]
 
+
     connection = sqlite3.connect('data.db')
     cursor = connection.cursor()
-    query = "select vorname, nachname from user where rfid = " + id
+    query = "select vorname, nachname from user where rfidtag = " + str(id)
     cursor.execute(query)
 
     result = cursor.fetchall() #lese alle tabellen einträge in die tabellenvariable "result"
