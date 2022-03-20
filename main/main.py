@@ -1,10 +1,14 @@
+import tkinter
 import tkinter as tk  # tkinter abkürzen mit tk
 import sqlite3
 from tkinter import *  # Importierung der ttk-Widgets
+from tkinter import messagebox
+from rfid import read
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
 root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
 root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
+
 
 #%% ---GUI---
 
@@ -12,6 +16,25 @@ root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 def say_hello():
     print('Einen schönen Arbeitstag!')
 
+    user_info = read.read_rfid_tag()
+    id = user_info[0]
+
+    connection = sqlite3.connect('data.db')
+    cursor = connection.cursor()
+    query = "select vorname, nachname from user where rfid = " + id
+    cursor.execute(query)
+
+    result = cursor.fetchall() #lese alle tabellen einträge in die tabellenvariable "result"
+
+    vorname = ""
+    nachname = ""
+    for row in result:
+        vorname = row[0]
+        nachname = row[1]
+
+    name = vorname + " " + nachname
+
+    messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name)
 
 kommen = Button(root,
                  text='Kommen',
@@ -77,6 +100,16 @@ def onclick():
         #     if User.find_by_username(user_info[1]):
         #         print("Employee is already registered")
         # except:
+
+        e1s = e1.get()
+        e2s = e2.get()
+        e3s = e3.get()
+        e4s = e4.get()
+        e5s = e5.get()
+        e6s = e6.get()
+        e7s = e7.get()
+        e8s = e8.get()
+
         connection = sqlite3.connect('data.db')
         cursor = connection.cursor()
 
@@ -87,9 +120,10 @@ def onclick():
 
         #query = 'INSERT INTO user VALUES (' + str(e1) + ',' + str(e2) + ',' + str(e3) + ',' + str(e4) + ',' +\
          #       str(e5) + ',' + str(e6) + ',' + str(e7) + ',' + str(e8) + ')'
-        query = """INSERT INTO user(vorname, nachname, geburtsdatum, familienstand, adresse, telefonnummer, email,
-         rfidtag) VALUES ('dsada', 'dsada', 19910926, 'leid', 'hert 3', 9899979, 'jdsadas', 321312)"""
-        cursor.execute(query)
+        #query = "INSERT INTO user VALUES (" + str(e1) + "," + str(e2) + "," + str(e3) + "," + str(e4) + "," +\
+              #  str(e5) + "," + str(e6) + "," + str(e7) + "," + str(e8) + ")"
+        query = """INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ? ,?) """
+        cursor.execute(query, (str(e1s), str(e2s), str(e3s), str(e4s), str(e5s), str(e6s), str(e7s), str(e8s)))
     #     cursor.execute(query, (33, "Raum"))
         connection.commit()
 
@@ -103,8 +137,11 @@ def onclick():
 
         connection.close()
 
+        messagebox.showinfo(title=None, message="Mitarbeiter erfolgreich registriert!")
+        popup.destroy()
+
     b1 = tk.Button(popup,
-                   text='Bestätigung',
+                   text='Registrieren',
                    command=register)
     b1.grid(row=8, column=1)
 
