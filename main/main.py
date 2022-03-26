@@ -182,7 +182,7 @@ registrieren = Button(root, text='Registrierung',
                  padx=20, pady=20,
                  command=register)
 registrieren.pack(side='bottom', fill='x', padx=20, pady=30)
-
+""" enthält noch Bugs, die nicht gefixt sind
 # Button 4
 def get_protocol():
 
@@ -205,7 +205,7 @@ protokoll = Button(root, text='Protokoll anzeigen',
                  padx=20, pady=20,
                  command=get_protocol)
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
-
+"""
 
 root.mainloop()
 
