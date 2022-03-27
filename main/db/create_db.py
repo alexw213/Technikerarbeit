@@ -12,7 +12,7 @@ create_table = "CREATE TABLE IF NOT EXISTS user (pid INT AUTO INCREMENT, vorname
 cursor.execute(create_table)
 connection.commit()
 
-create_table = "CREATE TABLE IF NOT EXISTS protocol (rfidtag INT, datum DATE, zeit TIME, reg_art TEXT)"
+create_table = "CREATE TABLE IF NOT EXISTS protocol (rfidtag INT, zeitpunkt TIMESTAMP, reg_art TEXT)"
 cursor.execute(create_table)
 connection.commit()
 

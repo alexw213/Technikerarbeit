@@ -7,15 +7,12 @@ def write_protocol(id, art):
     cursor = connection.cursor()
 
     # Protokoll schreiben
-    datet = datetime.now()  # Klassenmethode importiert
-    sec = str(datet.second)[:2]
-    strdate = str(datet.year) + "-" + str(datet.month) + "-" + str(datet.day)
-    strtime = str(datet.hour) + ":" + str(datet.minute) + ":" + str(sec)
+    currentDateTime = datetime.now()  # Klassenmethode importiert
 
     if art == "kommen":
-        query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(strdate) + "," + str(strtime) + ",Kommen)"
+        query = "INSERT INTO protocol VALUES (" + str(id) + "," + currentDateTime + ",Kommen)"
     elif art == "gehen":
-        query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(strdate) + "," + str(strtime) + ",Gehen)"
+        query = "INSERT INTO protocol VALUES (" + str(id) + "," + currentDateTime + ",Gehen)"
 
     cursor.execute(query)
     connection.commit()

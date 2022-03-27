@@ -23,6 +23,7 @@ def chip_in():
 
     user_info = read.read_rfid_tag()
     id = user_info[0]
+    #id = '803589853443'
 
     write_db.write_protocol(id, "kommen")
 
@@ -45,6 +46,7 @@ def chip_out():
 
     user_info = read.read_rfid_tag()
     id = user_info[0]
+    #id = '803589853443'
 
     write_db.write_protocol(id, "gehen")
 
