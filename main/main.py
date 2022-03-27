@@ -113,11 +113,6 @@ def register():
         connection = sqlite3.connect('db/data.db')
         cursor = connection.cursor()
 
-        query = """INSERT INTO user(vorname, nachname, geburtsdatum, familienstand, adresse, telefonnummer, email,
-         rfidtag)  VALUES (?, ?, ?, ?, ?, ?, ? ,?)"""
-        cursor.execute(query, (str(e1s), str(e2s), str(e3s), str(e4s), str(e5s), str(e6s), str(e7s), str(e8s)))
-        connection.commit()
-
         query2 = """Select * from user"""
         cursor.execute(query2)
         result = cursor.fetchall()
@@ -126,6 +121,11 @@ def register():
         for row in result:
             print(row)
             print("\n")
+
+        query = """INSERT INTO user(pid, vorname, nachname, geburtsdatum, familienstand, adresse, telefonnummer, email,
+         rfidtag)  VALUES (?, ?, ?, ?, ?, ?, ? ,?)"""
+        cursor.execute(query, (str(e1s), str(e2s), str(e3s), str(e4s), str(e5s), str(e6s), str(e7s), str(e8s)))
+        connection.commit()
 
         connection.close()
 
