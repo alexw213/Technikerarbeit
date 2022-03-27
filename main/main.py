@@ -1,6 +1,4 @@
-import tkinter
 import tkinter as tk  # tkinter abkürzen mit tk
-import sqlite3
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
 from datetime import datetime
@@ -8,6 +6,7 @@ from rfid import read
 from db import write_db
 from db import read_db
 from camera import camera
+from PIL import ImageTk,Image
 
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
@@ -139,16 +138,12 @@ def register():
 
     def picture():
 
-        user_image = camera.take_picture()
-        image = user_image[1]
+        camera.take_picture()
 
-        frame = Frame(master=popup)
-        frame.place(x=100, y=100, width=110, height=100)
-
-        image_a = PhotoImage(file='/home/pi/Technikerarbeit/camera/Pictures/image.jpg')
-
-        label = Label(master=frame, image=image_a)
-        label.place(x=100, y=100, width=100, height=100)
+        canvas = Canvas(popup, width=300, height=300)
+        canvas.pack()
+        img = ImageTk.PhotoImage(Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
+        canvas.create_image(20, 20, anchor=NW, image=img)
 
     b2 = tk.Button(popup,
                    text='Foto',

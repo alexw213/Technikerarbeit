@@ -9,5 +9,3 @@ def take_picture():
     user_image = camera.capture('/home/pi/Technikerarbeit/camera/Pictures/image.jpg')
     camera.stop_preview()
 
-    return user_image
-
