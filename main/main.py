@@ -153,6 +153,7 @@ registrieren.pack(side='bottom', fill='x', padx=20, pady=30)
 
 # Button 4
 def get_protocol():
+    popup_p = tk.Toplevel(root)
 
     connection = sqlite3.connect('db/data.db')
     cursor = connection.cursor()
@@ -163,11 +164,17 @@ def get_protocol():
     result = cursor.fetchall()
     connection.commit()
 
-    popup_p = tk.Toplevel(root)
+    #Zeilenkosmetik anpassen
     count = 0
     for row in result:
         count += 1
-        Label(popup_p, text=row).grid(row=count)
+        name = str(row[0]) + str(row[1])
+        datet = row[2]
+        strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(
+            datet.minute)
+        art = str(row[3])
+        Label(popup_p, text=name+"  "+strdate+"  "+art).grid(row=count)
+
 
     connection.close()
 
