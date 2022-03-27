@@ -4,7 +4,7 @@ import sqlite3
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
 from datetime import datetime
-from rfid import read
+#from rfid import read
 from db import write_db
 from db import read_db
 #from setuptools._distutils.command.config import config
@@ -21,9 +21,9 @@ root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 # Button 1
 def chip_in():
 
-    user_info = read.read_rfid_tag()
-    id = user_info[0]
-    #id = '803589853443'
+    #user_info = read.read_rfid_tag()
+    #id = user_info[0]
+    id = '803589853443'
 
     write_db.write_protocol(id, "kommen")
 
@@ -50,16 +50,23 @@ kommen.pack(side='left', padx=20, pady=50)
 # Button 2
 def chip_out():
 
-    user_info = read.read_rfid_tag()
-    id = user_info[0]
-    #id = '803589853443'
+    #user_info = read.read_rfid_tag()
+    #id = user_info[0]
+    id = '803589853443'
 
     write_db.write_protocol(id, "gehen")
 
     name = read_db.get_name(id)
 
     datet = datetime.now() #Klassenmethode importiert
-    strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
+    minute = str(datet.minute)
+    length = 0
+    for i in minute:
+        length += 1
+    if length == 1:
+        minute = "0" + str(datet.minute)
+
+    strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(minute)
     messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " + strdate + " Uhr")
 
 
@@ -168,12 +175,11 @@ def get_protocol():
     count = 0
     for row in result:
         count += 1
-        name = str(row[0]) + str(row[1])
+        name = str(row[0]) +" "+ str(row[1])
         datet = row[2]
-        strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(
-            datet.minute)
+        strdate = datet[:19]
         art = str(row[3])
-        Label(popup_p, text=name+"  "+strdate+"  "+art).grid(row=count)
+        Label(popup_p, text=str(name)+"  "+str(strdate)+"  "+str(art)).grid(row=count)
 
 
     connection.close()
