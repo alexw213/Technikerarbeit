@@ -140,7 +140,7 @@ def register():
 
         camera.take_picture()
 
-        canvas = Canvas(popup, width=300, height=300)
+        canvas = Canvas(root, width=300, height=300)
         canvas.pack()
         img = ImageTk.PhotoImage(Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
         canvas.create_image(20, 20, anchor=NW, image=img)
