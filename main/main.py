@@ -142,13 +142,10 @@ def register():
         user_image = camera.take_picture()
         image = user_image[1]
 
-        frame = Frame(master=popup)
-        frame.place(x=5, y=5, width=110, height=100)
-
-        image_anzeige = PhotoImage(file=image)
-        label = Label(master=frame, image=image_anzeige)
-        label.place(x=40, y=25, width=30, height=30)
-
+        photo = PhotoImage(file=image)
+        label = Label(image=photo)
+        label.image = photo
+        label.pack(side='right', padx=20, pady=50)
 
     b2 = tk.Button(popup,
                    text='Foto',
