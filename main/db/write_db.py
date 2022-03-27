@@ -8,12 +8,12 @@ def write_protocol(id, art):
 
     # Protokoll schreiben
     currentDateTime = datetime.now()  # Klassenmethode importiert
+    query = "INSERT INTO protocol VALUES (?, ?, ?)"
 
     if art == "kommen":
-        query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(currentDateTime) + ",Kommen)"
+        cursor.execute(query, (id, currentDateTime, "Kommen"))
     elif art == "gehen":
-        query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(currentDateTime) + ",Gehen)"
+        cursor.execute(query, (id, currentDateTime, "Gehen"))
 
-    cursor.execute(query)
     connection.commit()
     connection.close()

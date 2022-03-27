@@ -30,7 +30,14 @@ def chip_in():
     name = read_db.get_name(id)
 
     datet = datetime.now()
-    strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
+    minute = str(datet.minute)
+    length = 0
+    for i in minute:
+        length += 1
+    if length == 1:
+        minute = "0" + str(datet.minute)
+
+    strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(minute)
     messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Zeitpunkt: " + str(strdate) + " Uhr")
 
 kommen = Button(root,
@@ -39,7 +46,6 @@ kommen = Button(root,
                  bg='#00cd00',
                  command=chip_in)
 kommen.pack(side='left', padx=20, pady=50)
-
 
 # Button 2
 def chip_out():
