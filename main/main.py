@@ -39,6 +39,7 @@ def chip_in():
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(minute)
     messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Zeitpunkt: " + str(strdate) + " Uhr")
 
+
 kommen = Button(root,
                  text='Kommen',
                  padx=50, pady=50,
