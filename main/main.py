@@ -136,7 +136,7 @@ def register():
                    text='Bestätigen',
                    command=save)
     b1.grid(row=8, column=1)
-
+"""
     def picture():
 
         camera.take_picture()
@@ -154,7 +154,7 @@ def register():
                    text='Foto',
                    command=picture)
     b2.grid(row=8, column=2)
-
+"""
 
 
 
