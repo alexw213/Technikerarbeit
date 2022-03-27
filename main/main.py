@@ -7,7 +7,7 @@ from datetime import datetime
 from rfid import read
 from db import write_db
 from db import read_db
-
+from camera import camera
 
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
@@ -47,6 +47,7 @@ kommen = Button(root,
                  command=chip_in)
 kommen.pack(side='left', padx=20, pady=50)
 
+
 # Button 2
 def chip_out():
 
@@ -75,6 +76,7 @@ gehen = Button(root, text='Gehen',
                  bg='red',
                  command=chip_out)
 gehen.pack(side='right', padx=20, pady=50)
+
 
 #%% ---Registrierung im neuen Fenster---
 
@@ -125,32 +127,35 @@ def register():
         e7s = e7.get()
         e8s = e8.get()
 
-        connection = sqlite3.connect('db/data.db')
-        cursor = connection.cursor()
-
-        query2 = """Select * from user"""
-        cursor.execute(query2)
-        result = cursor.fetchall()
-        connection.commit()
-
-        for row in result:
-            print(row)
-            print("\n")
-
-        query = """INSERT INTO user(vorname, nachname, geburtsdatum, familienstand, adresse, telefonnummer, email,
-         rfidtag)  VALUES (?, ?, ?, ?, ?, ?, ? ,?)"""
-        cursor.execute(query, (str(e1s), str(e2s), str(e3s), str(e4s), str(e5s), str(e6s), str(e7s), str(e8s)))
-        connection.commit()
-
-        connection.close()
+        write_db.write_user(e1s, e2s, e3s, e4s, e5s, e6s, e7s, e8s)
 
         messagebox.showinfo(title=None, message="Mitarbeiter erfolgreich registriert!")
         popup.destroy()
 
     b1 = tk.Button(popup,
-                   text='Registrieren',
+                   text='Bestätigen',
                    command=save)
     b1.grid(row=8, column=1)
+
+    def picture():
+
+        user_image = camera.take_picture()
+        image = user_image[1]
+
+        frame = Frame(master=popup)
+        frame.place(x=5, y=5, width=110, height=100)
+
+        image_anzeige = PhotoImage(file=image)
+        label = Label(master=frame, image=image_anzeige)
+        label.place(x=40, y=25, width=30, height=30)
+
+
+    b2 = tk.Button(popup,
+                   text='Foto',
+                   command=picture)
+    b2.grid(row=8, column=2)
+
+
 
 
 registrieren = Button(root, text='Registrierung',
@@ -158,18 +163,12 @@ registrieren = Button(root, text='Registrierung',
                  command=register)
 registrieren.pack(side='bottom', fill='x', padx=20, pady=30)
 
+
 # Button 4
 def get_protocol():
     popup_p = tk.Toplevel(root)
 
-    connection = sqlite3.connect('db/data.db')
-    cursor = connection.cursor()
-
-    query = "SELECT user.vorname, user.nachname, protocol.zeitpunkt, protocol.reg_art" \
-            " FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag"
-    cursor.execute(query)
-    result = cursor.fetchall()
-    connection.commit()
+    result = read_db.get_protocol()
 
     #Zeilenkosmetik anpassen
     count = 0
@@ -181,8 +180,6 @@ def get_protocol():
         art = str(row[3])
         Label(popup_p, text=str(name)+"  "+str(strdate)+"  "+str(art)).grid(row=count)
 
-
-    connection.close()
 
 protokoll = Button(root, text='Protokoll anzeigen',
                  padx=20, pady=20,

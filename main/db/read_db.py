@@ -23,3 +23,30 @@ def get_name(id):
 
     return name
 
+def get_protocol():
+    connection = sqlite3.connect('db/data.db')
+    cursor = connection.cursor()
+
+    query = "SELECT user.vorname, user.nachname, protocol.zeitpunkt, protocol.reg_art" \
+            " FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    connection.commit()
+    connection.close()
+
+    return result
+
+def test_read():
+    connection = sqlite3.connect('db/data.db')
+    cursor = connection.cursor()
+
+    query2 = """Select * from user"""
+    cursor.execute(query2)
+    result = cursor.fetchall()
+    connection.commit()
+
+    for row in result:
+        print(row)
+        print("\n")
+
+    connection.close()
