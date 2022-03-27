@@ -143,12 +143,12 @@ def register():
         #image = user_image[1]
 
         frame = Frame(master=popup)
-        frame.place(width=110, height=100)
+        frame.place(side=RIGHT, x=100, y=100, width=110, height=100)
 
         image_a = PhotoImage(file='/home/pi/Technikerarbeit/camera/Pictures/image.jpg')
 
         label = Label(master=frame, image=image_a)
-        label.place(side=RIGHT, width=100, height=100)
+        label.place(side=RIGHT, x=100, y=100, width=100, height=100)
 
     b2 = tk.Button(popup,
                    text='Foto',
