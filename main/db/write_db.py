@@ -10,9 +10,9 @@ def write_protocol(id, art):
     currentDateTime = datetime.now()  # Klassenmethode importiert
 
     if art == "kommen":
-        query = "INSERT INTO protocol VALUES (" + str(id) + "," + currentDateTime + ",Kommen)"
+        query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(currentDateTime) + ",Kommen)"
     elif art == "gehen":
-        query = "INSERT INTO protocol VALUES (" + str(id) + "," + currentDateTime + ",Gehen)"
+        query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(currentDateTime) + ",Gehen)"
 
     cursor.execute(query)
     connection.commit()
