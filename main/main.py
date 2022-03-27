@@ -5,6 +5,8 @@ from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
 from datetime import datetime
 from rfid import read
+from db import write_db
+from db import read_db
 #from setuptools._distutils.command.config import config
 
 
@@ -22,38 +24,13 @@ def chip_in():
     user_info = read.read_rfid_tag()
     id = user_info[0]
 
-    # Verbindungsaufbau Datenbank
-    connection = sqlite3.connect('db/data.db')
+    write_db.write_protocol(id, "kommen")
 
-    # User-Tabelle nach ID auslesen
-    cursor = connection.cursor()
-    query = "select vorname, nachname from user where rfidtag = " + str(id)
-    cursor.execute(query)
+    name = read_db.get_name(id)
 
-    result = cursor.fetchall() #lese alle tabellen einträge in die tabellenvariable "result"
-
-    vorname = ""
-    nachname = ""
-    for row in result:
-        vorname = row[0]
-        nachname = row[1]
-
-    # Protokoll schreiben
-    datet = datetime.now()  # Klassenmethode importiert
-    sec = str(datet.second)[:2]
-    strdate = str(datet.year) + "-" + str(datet.month) + "-" + str(datet.day)
-    strtime = str(datet.hour) + ":" + str(datet.minute) + ":" + str(sec)
-    query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(strdate) + "," + str(strtime) + ",Kommen)"
-    cursor.execute(query)
-    connection.commit()
-
-    name = str(vorname) + " " + str(nachname)
-
+    datet = datetime.now()
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
     messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Zeitpunkt: " + str(strdate) + " Uhr")
-
-    connection.close()
-
 
 kommen = Button(root,
                  text='Kommen',
@@ -69,32 +46,14 @@ def chip_out():
     user_info = read.read_rfid_tag()
     id = user_info[0]
 
-    connection = sqlite3.connect('db/data.db')
-    cursor = connection.cursor()
-    query = "select vorname, nachname from user where rfidtag = " + str(id)
-    cursor.execute(query)
+    write_db.write_protocol(id, "gehen")
 
-    result = cursor.fetchall()  # lese alle tabellen einträge in die tabellenvariable "result"
-
-    vorname = ""
-    nachname = ""
-    for row in result:
-        vorname = row[0]
-        nachname = row[1]
-
-    # Protokoll schreiben
-    datet = datetime.now()  # Klassenmethode importiert
-    query = "INSERT INTO protocol VALUES (" + str(id) + "," + str(datet) + ",Gehen)"
-    cursor.execute(query)
-    connection.commit()
-
-    name = str(vorname) + " " + str(nachname)
+    name = read_db.get_name(id)
 
     datet = datetime.now() #Klassenmethode importiert
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(datet.minute)
     messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " + strdate + " Uhr")
 
-    connection.close()
 
 gehen = Button(root, text='Gehen',
                  padx=50, pady=50,
@@ -154,7 +113,8 @@ def register():
         connection = sqlite3.connect('db/data.db')
         cursor = connection.cursor()
 
-        query = """INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ? ,?) """
+        query = """INSERT INTO user(vorname, nachname, geburtsdatum, familienstand, adresse, telefonnummer, email,
+         rfidtag)  VALUES (?, ?, ?, ?, ?, ?, ? ,?)"""
         cursor.execute(query, (str(e1s), str(e2s), str(e3s), str(e4s), str(e5s), str(e6s), str(e7s), str(e8s)))
         connection.commit()
 
