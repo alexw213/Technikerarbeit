@@ -164,8 +164,10 @@ def get_protocol():
     connection.commit()
 
     popup_p = tk.Toplevel(root)
+    count = 0
     for row in result:
-        Label(popup_p, text=row).grid(row=0)
+        count += 1
+        Label(popup_p, text=row).grid(row=count)
 
     connection.close()
 
