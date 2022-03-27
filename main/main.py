@@ -37,7 +37,7 @@ def chip_in():
     for row in result:
         vorname = row[0]
         nachname = row[1]
-
+"""
     # Protokoll schreiben
     datet = datetime.now()  # Klassenmethode importiert
     sec = str(datet.second)[:2]
@@ -53,7 +53,7 @@ def chip_in():
     messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Zeitpunkt: " + str(strdate) + " Uhr")
 
     connection.close()
-
+"""
 
 kommen = Button(root,
                  text='Kommen',
