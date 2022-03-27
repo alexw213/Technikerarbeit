@@ -122,7 +122,7 @@ def register():
             print(row)
             print("\n")
 
-        query = """INSERT INTO user(pid, vorname, nachname, geburtsdatum, familienstand, adresse, telefonnummer, email,
+        query = """INSERT INTO user(vorname, nachname, geburtsdatum, familienstand, adresse, telefonnummer, email,
          rfidtag)  VALUES (?, ?, ?, ?, ?, ?, ? ,?)"""
         cursor.execute(query, (str(e1s), str(e2s), str(e3s), str(e4s), str(e5s), str(e6s), str(e7s), str(e8s)))
         connection.commit()
