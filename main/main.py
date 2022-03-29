@@ -1,4 +1,3 @@
-"""
 import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
@@ -151,7 +150,7 @@ def register():
     b2.grid(row=8, column=2)
 
 
-
+# Button 3
 registrieren = Button(root, text='Registrierung',
                  padx=20, pady=20,
                  command=register)
@@ -182,11 +181,11 @@ protokoll.pack(side='top', fill='x', padx=20, pady=30)
 
 
 root.mainloop()
-"""
+
 import tkinter
 import cv2
 import PIL.Image, PIL.ImageTk
-
+"""
 # Create a window
 window = tkinter.Tk()
 window.title("OpenCV and Tkinter")
@@ -209,3 +208,4 @@ canvas.create_image(0, 0, image=photo, anchor=tkinter.NW)
 
 # Run the window loop
 window.mainloop()
+"""
