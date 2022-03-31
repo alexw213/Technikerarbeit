@@ -200,7 +200,7 @@ root.mainloop()
 """
 
 
-import Tkinter as tk
+import tkinter as tk
 from PIL import ImageTk, Image
 
 # This creates the main window of an application
