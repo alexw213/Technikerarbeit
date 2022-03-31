@@ -153,8 +153,8 @@ def register():
         resized_image = img.resize((300, 150), Image.ANTIALIAS)
         new_image = ImageTk.PhotoImage(resized_image)
 
-        new_window = Toplevel(root)
-        panel = Label(new_window, image=new_image)
+        #new_window = Toplevel(root)
+        panel = Label(popup, image=new_image)
         panel.image = new_image
         panel.pack()
 
