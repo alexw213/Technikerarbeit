@@ -146,6 +146,7 @@ def register():
 
         popup2 = tk.Toplevel(root)
         popup2.geometry("750x270")
+        popup2.wm_title('Dick-pic')  # Fenster - Titel
 
         # Create a canvas
         canvas = Canvas(popup2, width=100, height=50)
