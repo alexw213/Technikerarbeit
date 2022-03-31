@@ -18,6 +18,20 @@ root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
 root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 
 
+# Create a canvas
+canvas = Canvas(root, width=100, height=50)
+canvas.pack()
+
+# Load an image in the script
+img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
+
+# Resize the Image using resize method
+resized_image = img.resize((100, 50), Image.ANTIALIAS)
+new_image = ImageTk.PhotoImage(resized_image)
+
+# Add image to the Canvas Items
+canvas.create_image(10, 10, anchor=CENTER, image=new_image)
+
 #%% ---GUI---
 
 # Button 1
@@ -144,23 +158,11 @@ def register():
 
         camera.take_picture()
 
-        popup2 = tk.Toplevel(root)
-        popup2.geometry("750x270")
-        popup2.wm_title('Dick-pic')  # Fenster - Titel
+        #popup2 = tk.Toplevel(root)
+        #popup2.geometry("750x270")
+        #popup2.wm_title('Dick-pic')  # Fenster - Titel
 
-        # Create a canvas
-        canvas = Canvas(popup2, width=100, height=50)
-        canvas.pack()
 
-        # Load an image in the script
-        img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
-
-        # Resize the Image using resize method
-        resized_image = img.resize((100, 50), Image.ANTIALIAS)
-        new_image = ImageTk.PhotoImage(resized_image)
-
-        # Add image to the Canvas Items
-        canvas.create_image(10, 10, anchor=CENTER, image=new_image)
 
     b2 = tk.Button(popup,
                    text='Foto',
