@@ -137,13 +137,13 @@ def register():
     b1 = tk.Button(popup,
                    text='Bestätigen',
                    command=save)
-    b1.grid(row=0, column=1)
+    b1.grid(row=8, column=1)
 
-    def picture():
+    def picture(popup1):
         camera.take_picture()
 
         # Create a canvas
-        canvas = Canvas(popup, width=400, height=200)
+        canvas = Canvas(popup1, width=400, height=200)
         canvas.grid(row=9, column=1)
 
         # Load an image in the script
@@ -154,12 +154,12 @@ def register():
         new_image = ImageTk.PhotoImage(resized_image)
 
         # Add image to the Canvas Items
-        canvas.create_image(10, 10, anchor=CENTER, image=new_image)
+        canvas.create_image(10, 10, anchor=SE, image=new_image)
 
 
     b2 = tk.Button(popup,
                    text='Foto',
-                   command=picture)
+                   command=picture(popup))
     b2.grid(row=8, column=2)
 
 
