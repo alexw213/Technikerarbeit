@@ -1,4 +1,3 @@
-"""
 import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
@@ -144,28 +143,19 @@ def register():
 
         camera.take_picture()
 
-        path = "/home/pi/Technikerarbeit/camera/Pictures/image.jpg"
-        img = ImageTk.PhotoImage(Image.open(path))
-        height, width, channels = img.shape
-        img = cv2.resize(img, (100, 50))
-        panel = tk.Label(root, image=img)
-        panel.pack(side="bottom", fill="both")
-
-        # Load an image using OpenCV
-        cv_img = cv2.cvtColor(cv2.imread("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"), cv2.COLOR_BGR2RGB)
-
-        # Get the image dimensions (OpenCV stores image data as NumPy ndarray)
-        height, width, no_channels = cv_img.shape
-
-        # Create a canvas that can fit the above image
-        canvas = tk.Canvas(root, width=width, height=height)
+        # Create a canvas
+        canvas = Canvas(popup, width=600, height=400)
         canvas.pack()
 
-        # Use PIL (Pillow) to convert the NumPy ndarray to a PhotoImage
-        photo = PhotoImage(image=pil.Image.fromarray(cv_img))
+        # Load an image in the script
+        img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
 
-        # Add a PhotoImage to the Canvas
-        canvas.create_image(0, 0, image=cv_img, anchor=tk.NW)
+        # Resize the Image using resize method
+        resized_image = img.resize((300, 205), Image.ANTIALIAS)
+        new_image = ImageTk.PhotoImage(resized_image)
+
+        # Add image to the Canvas Items
+        canvas.create_image(10, 10, side=RIGHT, image=new_image)
 
 
     b2 = tk.Button(popup,
@@ -204,7 +194,7 @@ protokoll = Button(root, text='Protokoll anzeigen',
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
 
 root.mainloop()
-"""
+
 
 """
 import tkinter as tk
@@ -224,7 +214,7 @@ panel.pack(side="bottom", fill="both", expand="yes")
 
 window.mainloop()
 """
-
+"""
 #Import the required Libraries
 from tkinter import *
 from PIL import Image,ImageTk
@@ -250,3 +240,4 @@ new_image= ImageTk.PhotoImage(resized_image)
 canvas.create_image(10,10, anchor=NW, image=new_image)
 
 win.mainloop()
+"""
