@@ -140,9 +140,9 @@ def register():
                    text='Bestätigen',
                    command=save)
     b1.grid(row=8, column=1)
-"""
-    def picture():
 
+    def picture():
+"""
         camera.take_picture()
 
         # Load an image using OpenCV
