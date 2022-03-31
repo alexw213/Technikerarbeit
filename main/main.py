@@ -1,5 +1,3 @@
-
-"""
 import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
@@ -145,6 +143,12 @@ def register():
 
         camera.take_picture()
 
+        path = "/home/pi/Technikerarbeit/camera/Pictures/image.jpg"
+        img = ImageTk.PhotoImage(Image.open(path))
+        panel = tk.Label(root, image=img)
+        panel1 = tk.Label(root, image=img)
+        panel.pack(side="bottom", fill="both", expand="yes")
+        """"
         # Load an image using OpenCV
         cv_img = cv2.cvtColor(cv2.imread("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"), cv2.COLOR_BGR2RGB)
 
@@ -160,6 +164,7 @@ def register():
 
         # Add a PhotoImage to the Canvas
         canvas.create_image(0, 0, image=cv_img, anchor=tk.NW)
+        """
 
     b2 = tk.Button(popup,
                    text='Foto',
@@ -197,9 +202,9 @@ protokoll = Button(root, text='Protokoll anzeigen',
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
 
 root.mainloop()
+
+
 """
-
-
 import tkinter as tk
 from PIL import ImageTk, Image
 
@@ -216,3 +221,4 @@ panel1 = tk.Label(window, image=img)
 panel.pack(side="bottom", fill="both", expand="yes")
 
 window.mainloop()
+"""
