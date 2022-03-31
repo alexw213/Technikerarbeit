@@ -140,18 +140,15 @@ def register():
     b1.grid(row=8, column=1)
 
     def picture():
-        camera.take_picture()
+        new_image = camera.take_picture()
 
         # Create a canvas
         canvas = Canvas(popup, width=400, height=200)
-        canvas.grid()
-
-        # Resize the Image using resize method
-        resized_image = img.resize((300, 150), Image.ANTIALIAS)
-        new_image = ImageTk.PhotoImage(resized_image)
+        canvas.pack()
 
         # Add image to the Canvas Items
         canvas.create_image(10, 10, anchor=CENTER, image=new_image)
+
 
     b2 = tk.Button(popup,
                    text='Foto',
@@ -188,8 +185,7 @@ protokoll = Button(root, text='Protokoll anzeigen',
                  command=get_protocol)
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
 
-# Load an image in the script
-img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
+
 
 root.mainloop()
 
