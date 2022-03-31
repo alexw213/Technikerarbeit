@@ -57,7 +57,7 @@ def get_worktime(id):
     cursor = connection.cursor()
 
     query = "SELECT protocol.zeitpunkt, protocol.reg_art FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag" \
-            " WHERE rfidtag = " + id
+            " WHERE rfidtag = " + str(id)
     cursor.execute(query)
     result = cursor.fetchall()
     connection.commit()
