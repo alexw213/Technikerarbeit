@@ -18,20 +18,6 @@ root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
 root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 
 
-# Create a canvas
-canvas = Canvas(root, width=100, height=50)
-canvas.pack()
-
-# Load an image in the script
-img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
-
-# Resize the Image using resize method
-resized_image = img.resize((100, 50), Image.ANTIALIAS)
-new_image = ImageTk.PhotoImage(resized_image)
-
-# Add image to the Canvas Items
-canvas.create_image(10, 10, anchor=CENTER, image=new_image)
-
 #%% ---GUI---
 
 # Button 1
@@ -155,19 +141,27 @@ def register():
     b1.grid(row=8, column=1)
 
     def picture():
-
         camera.take_picture()
 
-        #popup2 = tk.Toplevel(root)
-        #popup2.geometry("750x270")
-        #popup2.wm_title('Dick-pic')  # Fenster - Titel
+        # Create a canvas
+        canvas = Canvas(root, width=100, height=50)
+        canvas.pack()
 
+        # Load an image in the script
+        img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
 
+        # Resize the Image using resize method
+        resized_image = img.resize((100, 50), Image.ANTIALIAS)
+        new_image = ImageTk.PhotoImage(resized_image)
 
-    b2 = tk.Button(popup,
-                   text='Foto',
-                   command=picture)
-    b2.grid(row=8, column=2)
+        # Add image to the Canvas Items
+        canvas.create_image(10, 10, anchor=CENTER, image=new_image)
+
+        def pic():
+            b2 = tk.Button(popup,
+                           text='Foto',
+                           command=picture)
+            b2.grid(row=8, column=2)
 
 
 # Button 3
@@ -198,6 +192,7 @@ protokoll = Button(root, text='Protokoll anzeigen',
                  padx=20, pady=20,
                  command=get_protocol)
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
+
 
 root.mainloop()
 
