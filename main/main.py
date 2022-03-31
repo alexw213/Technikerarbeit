@@ -1,3 +1,4 @@
+"""
 import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
@@ -193,7 +194,7 @@ protokoll = Button(root, text='Protokoll anzeigen',
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
 
 root.mainloop()
-
+"""
 
 """
 import tkinter as tk
@@ -213,30 +214,29 @@ panel.pack(side="bottom", fill="both", expand="yes")
 
 window.mainloop()
 """
-"""
+
 #Import the required Libraries
 from tkinter import *
 from PIL import Image,ImageTk
 
 #Create an instance of tkinter frame
-win = Tk()
+root = Tk()
 
 #Set the geometry of tkinter frame
-win.geometry("750x270")
+root.geometry("750x270")
 
-#Create a canvas
-canvas= Canvas(win, width= 600, height= 400)
+# Create a canvas
+canvas = Canvas(root, width=100, height=50)
 canvas.pack()
 
-#Load an image in the script
-img= (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
+# Load an image in the script
+img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
 
-#Resize the Image using resize method
-resized_image= img.resize((300,205), Image.ANTIALIAS)
-new_image= ImageTk.PhotoImage(resized_image)
+# Resize the Image using resize method
+resized_image = img.resize((100, 50), Image.ANTIALIAS)
+new_image = ImageTk.PhotoImage(resized_image)
 
-#Add image to the Canvas Items
-canvas.create_image(10,10, anchor=NW, image=new_image)
+# Add image to the Canvas Items
+canvas.create_image(10, 10, anchor=CENTER, image=new_image)
 
-win.mainloop()
-"""
+root.mainloop()
