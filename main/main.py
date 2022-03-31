@@ -145,9 +145,10 @@ def register():
 
         path = "/home/pi/Technikerarbeit/camera/Pictures/image.jpg"
         img = ImageTk.PhotoImage(Image.open(path))
+        height, width, channels = img.shape
+        img = cv2.resize(img, (100, 50))
         panel = tk.Label(root, image=img)
-        panel1 = tk.Label(root, image=img)
-        panel.pack(side="bottom", fill="both", expand="yes")
+        panel.pack(side="bottom", fill="both")
         """"
         # Load an image using OpenCV
         cv_img = cv2.cvtColor(cv2.imread("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"), cv2.COLOR_BGR2RGB)
