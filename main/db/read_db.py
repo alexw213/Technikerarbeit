@@ -56,8 +56,8 @@ def get_worktime(id):
     connection = sqlite3.connect('db/data.db')
     cursor = connection.cursor()
 
-    query = "SELECT protocol.zeitpunkt, protocol.reg_art FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag" \
-            " WHERE rfidtag = " + str(id)
+    query = "SELECT protocol.zeitpunkt, protocol.reg_art, user.rfidtag FROM user JOIN protocol ON" \
+            " user.rfidtag = protocol.rfidtag WHERE rfidtag = " + str(id)
     cursor.execute(query)
     result = cursor.fetchall()
     connection.commit()
