@@ -142,9 +142,9 @@ def register():
     b1.grid(row=8, column=1)
 
     def picture():
-"""
-        camera.take_picture()
 
+        camera.take_picture()
+"""
         # Load an image using OpenCV
         cv_img = cv2.cvtColor(cv2.imread("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"), cv2.COLOR_BGR2RGB)
 
