@@ -195,32 +195,24 @@ protokoll = Button(root, text='Protokoll anzeigen',
                  padx=20, pady=20,
                  command=get_protocol)
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
-"""
-
-import picamera
-import picamera.array
-import time
-import cv2
-from matplotlib import pyplot as plt
-import tkinter as tk
-from tkinter import *
-import Image, ImageTk
-import sys
-
-root = tk.Tk()  # Fenster erstellen
-root.wm_title('Time-Control')  # Fenster - Titel
-root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
-root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
-
-
-# - display on Tkinter -
-def displayAtThinter():
-    img = cv2.cvtColor(cv2.imread("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"), cv2.IMREAD_COLOR)
-    b, g, r = cv2.split(img)
-    img2 = cv2.merge((r, g, b))
-    img2FromArray = Image.fromarray(img2)
-    imgtk = ImageTk.PhotoImage(image=img2FromArray)
-    tk.Label(root, image=imgtk).pack()
-    root.mainloop()
 
 root.mainloop()
+"""
+
+
+import Tkinter as tk
+from PIL import ImageTk, Image
+
+# This creates the main window of an application
+window = tk.Tk()
+window.title("Join")
+window.geometry("640x480+100+100")
+window.configure(background='grey')
+
+path = "/home/pi/Technikerarbeit/camera/Pictures/image.jpg"
+img = ImageTk.PhotoImage(Image.open(path))
+panel = tk.Label(window, image=img)
+panel1 = tk.Label(window, image=img)
+panel.pack(side="bottom", fill="both", expand="yes")
+
+window.mainloop()
