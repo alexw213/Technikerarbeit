@@ -155,7 +155,7 @@ def register():
         new_image = ImageTk.PhotoImage(resized_image)
 
         # Add image to the Canvas Items
-        canvas.create_image(10, 10, side=RIGHT, image=new_image)
+        canvas.create_image(side=RIGHT, image=new_image)
 
 
     b2 = tk.Button(popup,
