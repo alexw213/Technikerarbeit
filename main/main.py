@@ -142,7 +142,7 @@ def register():
 
     def picture():
 
-        #camera.take_picture()
+        camera.take_picture()
 
         popup2 = tk.Tk()
         popup2.geometry("750x270")
