@@ -1,3 +1,4 @@
+"""
 import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
@@ -149,7 +150,7 @@ def register():
         img = cv2.resize(img, (100, 50))
         panel = tk.Label(root, image=img)
         panel.pack(side="bottom", fill="both")
-        """"
+
         # Load an image using OpenCV
         cv_img = cv2.cvtColor(cv2.imread("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"), cv2.COLOR_BGR2RGB)
 
@@ -165,7 +166,7 @@ def register():
 
         # Add a PhotoImage to the Canvas
         canvas.create_image(0, 0, image=cv_img, anchor=tk.NW)
-        """
+
 
     b2 = tk.Button(popup,
                    text='Foto',
@@ -203,7 +204,7 @@ protokoll = Button(root, text='Protokoll anzeigen',
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
 
 root.mainloop()
-
+"""
 
 """
 import tkinter as tk
@@ -223,3 +224,29 @@ panel.pack(side="bottom", fill="both", expand="yes")
 
 window.mainloop()
 """
+
+#Import the required Libraries
+from tkinter import *
+from PIL import Image,ImageTk
+
+#Create an instance of tkinter frame
+win = Tk()
+
+#Set the geometry of tkinter frame
+win.geometry("750x270")
+
+#Create a canvas
+canvas= Canvas(win, width= 600, height= 400)
+canvas.pack()
+
+#Load an image in the script
+img= (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
+
+#Resize the Image using resize method
+resized_image= img.resize((300,205), Image.ANTIALIAS)
+new_image= ImageTk.PhotoImage(resized_image)
+
+#Add image to the Canvas Items
+canvas.create_image(10,10, anchor=NW, image=new_image)
+
+win.mainloop()
