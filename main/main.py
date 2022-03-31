@@ -104,14 +104,14 @@ def register():
     e7 = Entry(popup)
     e8 = Entry(popup)
 
-    e1.grid(row=0, column=1)
-    e2.grid(row=1, column=1)
-    e3.grid(row=2, column=1)
-    e4.grid(row=3, column=1)
-    e5.grid(row=4, column=1)
-    e6.grid(row=5, column=1)
-    e7.grid(row=6, column=1)
-    e8.grid(row=7, column=1)
+    e1.grid(row=1, column=1)
+    e2.grid(row=2, column=1)
+    e3.grid(row=3, column=1)
+    e4.grid(row=4, column=1)
+    e5.grid(row=5, column=1)
+    e6.grid(row=6, column=1)
+    e7.grid(row=7, column=1)
+    e8.grid(row=8, column=1)
 
     # Registriervorgang
     #def bestätigen():
@@ -137,7 +137,7 @@ def register():
     b1 = tk.Button(popup,
                    text='Bestätigen',
                    command=save)
-    b1.grid(row=8, column=1)
+    b1.grid(row=0, column=1)
 
     def picture():
         new_image = camera.take_picture()
