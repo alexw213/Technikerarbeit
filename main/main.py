@@ -144,14 +144,14 @@ def register():
         camera.take_picture()
 
         # Create a canvas
-        canvas = Canvas(root, width=400, height=200)
+        canvas = Canvas(root, width=100, height=50)
         canvas.pack()
 
         # Load an image in the script
         img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
 
         # Resize the Image using resize method
-        resized_image = img.resize((200, 105), Image.ANTIALIAS)
+        resized_image = img.resize((100, 50), Image.ANTIALIAS)
         new_image = ImageTk.PhotoImage(resized_image)
 
         # Add image to the Canvas Items
