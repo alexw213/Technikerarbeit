@@ -14,7 +14,7 @@ import cv2
 
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
-#root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
+root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
 root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 
 
@@ -156,7 +156,7 @@ def register():
         new_image = ImageTk.PhotoImage(resized_image)
 
         # Add image to the Canvas Items
-        canvas.create_image(10, 10, anchor=CENTER, image=new_image)
+        canvas.create_image(anchor=CENTER, image=new_image)
 
     b2 = tk.Button(popup,
                    text='Foto',
