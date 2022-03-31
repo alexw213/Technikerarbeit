@@ -1,4 +1,5 @@
 
+"""
 import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
@@ -11,7 +12,6 @@ from camera import camera
 from PIL import ImageTk,Image
 import cv2
 
-"""
 
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
@@ -144,7 +144,7 @@ def register():
     def picture():
 
         camera.take_picture()
-"""
+
         # Load an image using OpenCV
         cv_img = cv2.cvtColor(cv2.imread("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"), cv2.COLOR_BGR2RGB)
 
@@ -160,7 +160,7 @@ def register():
 
         # Add a PhotoImage to the Canvas
         canvas.create_image(0, 0, image=cv_img, anchor=tk.NW)
-"""
+
     b2 = tk.Button(popup,
                    text='Foto',
                    command=picture)
@@ -196,5 +196,31 @@ protokoll = Button(root, text='Protokoll anzeigen',
                  command=get_protocol)
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
 """
+
+import picamera
+import picamera.array
+import time
+import cv2
+from matplotlib import pyplot as plt
+import tkinter as tk
+from tkinter import *
+import Image, ImageTk
+import sys
+
+root = tk.Tk()  # Fenster erstellen
+root.wm_title('Time-Control')  # Fenster - Titel
+root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
+root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
+
+
+# - display on Tkinter -
+def displayAtThinter():
+    img = cv2.cvtColor(cv2.imread("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"), cv2.IMREAD_COLOR)
+    b, g, r = cv2.split(img)
+    img2 = cv2.merge((r, g, b))
+    img2FromArray = Image.fromarray(img2)
+    imgtk = ImageTk.PhotoImage(image=img2FromArray)
+    tk.Label(root, image=imgtk).pack()
+    root.mainloop()
 
 root.mainloop()
