@@ -17,6 +17,16 @@ root.wm_title('Time-Control')  # Fenster - Titel
 root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
 root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 
+# Create a canvas
+canvas = Canvas(root, width=100, height=50)
+canvas.pack()
+
+# Load an image in the script
+img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
+
+# Resize the Image using resize method
+resized_image = img.resize((100, 50), Image.ANTIALIAS)
+new_image = ImageTk.PhotoImage(resized_image)
 
 #%% ---GUI---
 
@@ -143,25 +153,13 @@ def register():
     def picture():
         camera.take_picture()
 
-        # Create a canvas
-        canvas = Canvas(root, width=100, height=50)
-        canvas.pack()
-
-        # Load an image in the script
-        img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
-
-        # Resize the Image using resize method
-        resized_image = img.resize((100, 50), Image.ANTIALIAS)
-        new_image = ImageTk.PhotoImage(resized_image)
-
         # Add image to the Canvas Items
         canvas.create_image(10, 10, anchor=CENTER, image=new_image)
 
-        def pic():
-            b2 = tk.Button(popup,
-                           text='Foto',
-                           command=picture)
-            b2.grid(row=8, column=2)
+    b2 = tk.Button(popup,
+                   text='Foto',
+                   command=picture)
+    b2.grid(row=8, column=2)
 
 
 # Button 3
