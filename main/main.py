@@ -17,17 +17,6 @@ root.wm_title('Time-Control')  # Fenster - Titel
 root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
 root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 
-# Create a canvas
-canvas = Canvas(root, width=100, height=50)
-canvas.pack()
-
-# Load an image in the script
-img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
-
-# Resize the Image using resize method
-resized_image = img.resize((100, 50), Image.ANTIALIAS)
-new_image = ImageTk.PhotoImage(resized_image)
-
 #%% ---GUI---
 
 # Button 1
@@ -153,6 +142,14 @@ def register():
     def picture():
         camera.take_picture()
 
+        # Create a canvas
+        canvas = Canvas(popup, width=400, height=200)
+        canvas.grid()
+
+        # Resize the Image using resize method
+        resized_image = img.resize((300, 150), Image.ANTIALIAS)
+        new_image = ImageTk.PhotoImage(resized_image)
+
         # Add image to the Canvas Items
         canvas.create_image(10, 10, anchor=CENTER, image=new_image)
 
@@ -191,6 +188,8 @@ protokoll = Button(root, text='Protokoll anzeigen',
                  command=get_protocol)
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
 
+# Load an image in the script
+img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
 
 root.mainloop()
 
