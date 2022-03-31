@@ -144,7 +144,7 @@ def register():
 
         camera.take_picture()
 
-        popup2 = tk.Tk()
+        popup2 = tk.Toplevel(root)
         popup2.geometry("750x270")
 
         # Create a canvas
