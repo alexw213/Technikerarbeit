@@ -62,6 +62,9 @@ def get_worktime(id):
     result = cursor.fetchall()
     connection.commit()
 
+    startzeit = ""
+    endzeit = ""
+
     for row in result:
         if result[1] == "Kommen":
             startzeit = result[0]
