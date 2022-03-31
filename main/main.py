@@ -150,13 +150,13 @@ def register():
         img = Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg")
 
         # Resize the Image using resize method
-        resized_image = img.resize((200, 200), Image.ANTIALIAS)
+        resized_image = img.resize((300, 150), Image.ANTIALIAS)
         new_image = ImageTk.PhotoImage(resized_image)
 
         #new_window = Toplevel(root)
         panel = Label(popup, image=new_image)
         panel.image = new_image
-        panel.grid(row=1, column=2)
+        panel.grid(row=9, column=1)
 
         # Add image to the Canvas Items
         #canvas.create_image(10, 10, anchor=SE, image=new_image)
