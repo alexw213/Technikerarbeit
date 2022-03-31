@@ -144,7 +144,7 @@ def register():
 
         # Create a canvas
         canvas = Canvas(popup, width=400, height=200)
-        canvas.pack()
+        canvas.grid(row=9, column=1)
 
         # Add image to the Canvas Items
         canvas.create_image(10, 10, anchor=CENTER, image=new_image)
