@@ -146,7 +146,7 @@ def register():
 
         # Create a canvas
         canvas = Canvas(popup, width=100, height=50)
-        canvas.pack()
+        canvas.grid(row=1, column=2)
 
         # Load an image in the script
         img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
