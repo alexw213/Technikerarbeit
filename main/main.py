@@ -14,7 +14,7 @@ import cv2
 
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
-root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
+#root.config(background='#ffdead')  # Hintergrundfarbe des Fensters
 root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 
 
