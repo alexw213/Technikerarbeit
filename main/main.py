@@ -156,7 +156,7 @@ def register():
         #new_window = Toplevel(root)
         panel = Label(popup, image=new_image)
         panel.image = new_image
-        panel.pack()
+        panel.grid()
 
         # Add image to the Canvas Items
         #canvas.create_image(10, 10, anchor=SE, image=new_image)
