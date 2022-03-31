@@ -58,8 +58,8 @@ def chip_out():
     #id = '803589853443'
 
     write_db.write_protocol(id, "gehen")
-
     name = read_db.get_name(id)
+    work_time = read_db.get_worktime(id)
 
     datet = datetime.now() #Klassenmethode importiert
     minute = str(datet.minute)
@@ -69,8 +69,11 @@ def chip_out():
     if length == 1:
         minute = "0" + str(datet.minute)
 
-    strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) + ":" + str(minute)
-    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " + strdate + " Uhr")
+    strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " +\
+              str(datet.hour) + ":" + str(minute)
+
+    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " +
+                                            strdate + " Uhr" + "\n" + "Arbeitszeit: " + work_time)
 
 
 gehen = Button(root, text='Gehen',
