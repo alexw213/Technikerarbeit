@@ -142,10 +142,10 @@ def register():
 
     def picture():
 
+        #camera.take_picture()
+
         popup2 = tk.Tk()
         popup2.geometry("750x270")
-
-        #camera.take_picture()
 
         # Create a canvas
         canvas = Canvas(popup2, width=100, height=50)
@@ -159,7 +159,7 @@ def register():
         new_image = ImageTk.PhotoImage(resized_image)
 
         # Add image to the Canvas Items
-        canvas.create_image(anchor=CENTER, image=new_image)
+        canvas.create_image(10, 10, anchor=CENTER, image=new_image)
 
     b2 = tk.Button(popup,
                    text='Foto',
