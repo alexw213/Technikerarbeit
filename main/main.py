@@ -145,17 +145,17 @@ def register():
 
         # Create a canvas
         canvas = Canvas(popup, width=600, height=400)
-        canvas.grid(column=2)
+        canvas.grid(row=9, column=2)
 
         # Load an image in the script
         img = (Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg"))
 
         # Resize the Image using resize method
-        resized_image = img.resize((300, 205), Image.ANTIALIAS)
+        resized_image = img.resize((200, 105), Image.ANTIALIAS)
         new_image = ImageTk.PhotoImage(resized_image)
 
         # Add image to the Canvas Items
-        canvas.create_image(10, 10, image=new_image)
+        canvas.create_image(10, 10, anchor=CENTER, image=new_image)
 
 
     b2 = tk.Button(popup,
