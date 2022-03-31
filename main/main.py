@@ -153,10 +153,10 @@ def register():
         canvas.pack()
 
         # Use PIL (Pillow) to convert the NumPy ndarray to a PhotoImage
-        photo = PhotoImage(image=Image.fromarray(cv_img))
+        #photo = PhotoImage(image=pil.Image.fromarray(cv_img))
 
         # Add a PhotoImage to the Canvas
-        canvas.create_image(0, 0, image=photo, anchor=tk.NW)
+        canvas.create_image(0, 0, image=cv_img, anchor=tk.NW)
 
     b2 = tk.Button(popup,
                    text='Foto',
