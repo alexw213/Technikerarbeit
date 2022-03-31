@@ -1,4 +1,4 @@
-
+"""
 import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
@@ -196,7 +196,7 @@ protokoll.pack(side='top', fill='x', padx=20, pady=30)
 root.mainloop()
 
 
-"""
+
 import tkinter as tk
 from PIL import ImageTk, Image
 
@@ -215,7 +215,7 @@ panel.pack(side="bottom", fill="both", expand="yes")
 window.mainloop()
 """
 
-"""
+
 #Import the required Libraries
 from tkinter import *
 from PIL import Image,ImageTk
@@ -241,4 +241,4 @@ new_image = ImageTk.PhotoImage(resized_image)
 canvas.create_image(10, 10, anchor=CENTER, image=new_image)
 
 root.mainloop()
-"""
+
