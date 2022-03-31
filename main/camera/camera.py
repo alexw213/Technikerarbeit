@@ -4,7 +4,7 @@ from time import sleep
 camera = PiCamera()
 
 def take_picture():
-    camera.rotation = 90
+    camera.rotation = 270
     camera.start_preview()
     sleep(3)
     user_image = camera.capture('/home/pi/Technikerarbeit/camera/Pictures/image.jpg')

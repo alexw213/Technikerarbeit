@@ -1,3 +1,4 @@
+
 import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
@@ -6,9 +7,11 @@ from rfid import read
 from db import write_db
 from db import read_db
 from camera import camera
+
 from PIL import ImageTk,Image
 import cv2
 
+"""
 
 root = tk.Tk()  # Fenster erstellen
 root.wm_title('Time-Control')  # Fenster - Titel
@@ -137,7 +140,7 @@ def register():
                    text='Bestätigen',
                    command=save)
     b1.grid(row=8, column=1)
-
+"""
     def picture():
 
         camera.take_picture()
@@ -153,11 +156,11 @@ def register():
         canvas.pack()
 
         # Use PIL (Pillow) to convert the NumPy ndarray to a PhotoImage
-        #photo = PhotoImage(image=pil.Image.fromarray(cv_img))
+        photo = PhotoImage(image=pil.Image.fromarray(cv_img))
 
         # Add a PhotoImage to the Canvas
         canvas.create_image(0, 0, image=cv_img, anchor=tk.NW)
-
+"""
     b2 = tk.Button(popup,
                    text='Foto',
                    command=picture)
@@ -192,6 +195,6 @@ protokoll = Button(root, text='Protokoll anzeigen',
                  padx=20, pady=20,
                  command=get_protocol)
 protokoll.pack(side='top', fill='x', padx=20, pady=30)
-
+"""
 
 root.mainloop()
