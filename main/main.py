@@ -3,13 +3,13 @@ import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox
 from datetime import datetime
-from rfid import read
+#from rfid import read
 from db import write_db
 from db import read_db
 from camera import camera
 
-from PIL import ImageTk,Image
-import cv2
+#from PIL import ImageTk,Image
+#import cv2
 
 
 root = tk.Tk()  # Fenster erstellen
@@ -22,9 +22,9 @@ root.geometry('1200x800')  # GUI-Fenstergröße bestimmen
 # Button 1
 def chip_in():
 
-    user_info = read.read_rfid_tag()
-    id = user_info[0]
-    #id = '803589853443'
+    #user_info = read.read_rfid_tag()
+    #id = user_info[0]
+    id = '803589853443'
 
     write_db.write_protocol(id, "kommen")
 
@@ -53,9 +53,9 @@ kommen.pack(side='left', padx=20, pady=50)
 # Button 2
 def chip_out():
 
-    user_info = read.read_rfid_tag()
-    id = user_info[0]
-    #id = '803589853443'
+    #user_info = read.read_rfid_tag()
+    #id = user_info[0]
+    id = '803589853443'
 
     write_db.write_protocol(id, "gehen")
     name = read_db.get_name(id)
@@ -72,9 +72,10 @@ def chip_out():
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " +\
               str(datet.hour) + ":" + str(minute)
 
-    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " +
-                                            strdate + " Uhr" + "\n" + "Arbeitszeit: " + work_time)
-
+#    messagebox.showinfo(title=None, message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " +
+ #                                           strdate + " Uhr" + "\n" + "Arbeitszeit: " + work_time)
+    messagebox.showinfo(title=None,
+                        message="Einen schönen Feierabend " + name + "!" + "\n" + "Zeitpunkt: " + str(strdate) + " Uhr")
 
 gehen = Button(root, text='Gehen',
                  padx=50, pady=50,
@@ -143,7 +144,7 @@ def register():
     b1.grid(row=8, column=1)
 
     def picture():
-        camera.take_picture()
+        #camera.take_picture()
 
         # Create a canvas
         #canvas = Canvas(popup, width=400, height=200)

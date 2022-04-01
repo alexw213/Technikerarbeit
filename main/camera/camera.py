@@ -1,9 +1,9 @@
-from picamera import PiCamera
+#from picamera import PiCamera
 from time import sleep
-from PIL import ImageTk,Image
-import cv2
+#from PIL import ImageTk,Image
+#import cv2
 
-camera = PiCamera()
+#camera = PiCamera()
 
 def take_picture():
     camera.rotation = 270
