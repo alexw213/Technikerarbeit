@@ -6,6 +6,7 @@ from rfid import read
 from db import write_db
 from db import read_db
 from PIL import ImageTk,Image
+from camera import camera
 import cv2
 
 root = tk.Tk()  # Fenster erstellen
@@ -137,7 +138,7 @@ def register():
     b1.grid(row=8, column=1)
 
     def picture():
-        #camera.take_picture()
+        camera.take_picture()
 
         # Load an image in the script
         img = Image.open("/home/pi/Technikerarbeit/camera/Pictures/image.jpg")
