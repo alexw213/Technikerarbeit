@@ -59,7 +59,7 @@ def chip_out():
 
     write_db.write_protocol(id, "gehen")
     name = read_db.get_name(id)
-    work_time = read_db.get_worktime(id)
+#    work_time = read_db.get_worktime(id)
 
     datet = datetime.now() #Klassenmethode importiert
     minute = str(datet.minute)
