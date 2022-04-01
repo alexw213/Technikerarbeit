@@ -1,5 +1,4 @@
 import sqlite3
-from datetime import datetime
 
 def get_name(id):
     # Verbindungsaufbau Datenbank
@@ -41,7 +40,7 @@ def test_read():
     connection = sqlite3.connect('db/data.db')
     cursor = connection.cursor()
 
-    query = """Select * from user"""
+    query = """Select * from protocol"""
     cursor.execute(query)
     result = cursor.fetchall()
     connection.commit()
@@ -52,27 +51,3 @@ def test_read():
 
     connection.close()
 
-def get_worktime(id):
-    connection = sqlite3.connect('db/data.db')
-    cursor = connection.cursor()
-
-    query = "SELECT zeitpunkt, reg_art FROM protocol WHERE rfidtag = " + str(id)
-    cursor.execute(query)
-    result = cursor.fetchall()
-    connection.commit()
-
-    startzeit = ""
-    endzeit = ""
-
-    for row in result:
-        if row[1] == "Kommen":
-            startzeit = row[0]
-        if row[1] == "Gehen":
-            endzeit = row[0]
-
-    time_1 = datetime.strptime(startzeit, "%H:%M:%S")
-    time_2 = datetime.strptime(endzeit, "%H:%M:%S")
-
-    time_interval = time_2 - time_1
-
-    return time_interval
