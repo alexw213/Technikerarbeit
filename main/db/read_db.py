@@ -30,8 +30,7 @@ def get_protocol():
     cursor = connection.cursor()
 
     # Tabelle "protocol" und "user" werden mit JOIN zusammengeführt
-    query = "SELECT user.vorname, user.nachname, protocol.zeitpunkt, protocol.reg_art" \ 
-            " FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag" 
+    query = "SELECT user.vorname, user.nachname, protocol.zeitpunkt, protocol.reg_art" " FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag"
     cursor.execute(query)
     result = cursor.fetchall()
     connection.commit()
