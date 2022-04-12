@@ -1,22 +1,18 @@
 import sqlite3
 
-connection = sqlite3.connect('data.db')
-cursor = connection.cursor()
+connection = sqlite3.connect('data.db') # Verbindung zur Datenbank "data.db" wird aufgebaut
+cursor = connection.cursor() # Objekt zur SQL Navigation wird erstellt
 
-# MUST BE INTEGER
-# This is the only place where int vs INTEGER matters—in auto-incrementing columns
-
-create_table = "CREATE TABLE IF NOT EXISTS user (pid INT AUTO INCREMENT, vorname text, " \
+# User Tabelle wird erstellt
+query = "CREATE TABLE IF NOT EXISTS user (pid INT AUTO INCREMENT, vorname text, " \
                "nachname text, geburtsdatum date, familienstand text, adresse text, telefonnummer int, " \
                "email text, rfidtag int, PRIMARY KEY (pid))"
-cursor.execute(create_table)
-connection.commit()
+cursor.execute(query) # Exexute-Methode wird aufgerufen und SQL Befehl "create_table" wird ausgeführt
+connection.commit() # Vorherige Ausführungen werden bestätigt (nochmal googeln!!!)
 
-create_table = "CREATE TABLE IF NOT EXISTS protocol (rfidtag INT, zeitpunkt TIMESTAMP, reg_art TEXT)"
-cursor.execute(create_table)
-connection.commit()
-
-cursor.execute("INSERT INTO user VALUES(1, 'Josef', 'Schefer', 1991-09-26, 'ledig', 'Harthäuserweg 43', 017661972415, 'jossa.s@)web.de', 9328342122)")
+# Protokolltabelle wird erstellt
+query = "CREATE TABLE IF NOT EXISTS protocol (rfidtag INT, zeitpunkt TIMESTAMP, reg_art TEXT)"
+cursor.execute(query)
 connection.commit()
 
 connection.close()

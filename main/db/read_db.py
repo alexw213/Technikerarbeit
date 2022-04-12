@@ -1,15 +1,16 @@
 import sqlite3
 
-def get_name(id):
+#%% ---Methode zum Namen auslesen---
+def get_name(id): # Parameter id wird in die Methode eingefügt
     # Verbindungsaufbau Datenbank
     connection = sqlite3.connect('db/data.db')
 
     # User-Tabelle nach ID auslesen
     cursor = connection.cursor()
-    query = "select vorname, nachname from user where rfidtag = " + str(id)
-    cursor.execute(query)
+    query = "SELECT vorname, nachname FROM user WHERE rfidtag = " + str(id) # Vorname & Nachname wird aus User-Tabelle anhand des RFID-Tags ausgelesen
+    cursor.execute(query) # quere wird ausgeführt
 
-    result = cursor.fetchall() #lese alle tabellen einträge in die tabellenvariable "result"
+    result = cursor.fetchall() #Überträgt alle Tabellen-Einträge in die Tabellenvariable "result"
 
     vorname = ""
     nachname = ""
@@ -19,35 +20,22 @@ def get_name(id):
 
     name = str(vorname) + " " + str(nachname)
 
-    connection.close()
+    connection.close() # SQL-Verbindung wird geschlossen
 
-    return name
+    return name # Name wird zurückgegeben
 
+#%% ---Methode zum Protokoll auslesen---
 def get_protocol():
     connection = sqlite3.connect('db/data.db')
     cursor = connection.cursor()
 
-    query = "SELECT user.vorname, user.nachname, protocol.zeitpunkt, protocol.reg_art" \
-            " FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag"
+    # Tabelle "protocol" und "user" werden mit JOIN zusammengeführt
+    query = "SELECT user.vorname, user.nachname, protocol.zeitpunkt, protocol.reg_art" \ 
+            " FROM user JOIN protocol ON user.rfidtag = protocol.rfidtag" 
     cursor.execute(query)
     result = cursor.fetchall()
     connection.commit()
     connection.close()
 
-    return result
-
-def test_read():
-    connection = sqlite3.connect('db/data.db')
-    cursor = connection.cursor()
-
-    query = """Select * from protocol"""
-    cursor.execute(query)
-    result = cursor.fetchall()
-    connection.commit()
-
-    for row in result:
-        print(row)
-        print("\n")
-
-    connection.close()
+    return result # Ausgelesene Tabelleninhalt wird zurückgegeben
 
