@@ -3,7 +3,7 @@ import sqlite3
 connection = sqlite3.connect('data.db') # Verbindung zur Datenbank "data.db" wird aufgebaut
 cursor = connection.cursor() # Objekt zur SQL Navigation wird erstellt
 
-# User Tabelle wird erstellt!
+# User Tabelle wird erstellt
 query = "CREATE TABLE IF NOT EXISTS user (vorname text, " \
                "nachname text, geburtsdatum date, familienstand text, adresse text, telefonnummer int, " \
                "email text, rfidtag int, pid int, PRIMARY KEY (pid))"
