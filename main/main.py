@@ -127,7 +127,7 @@ def register():
     e6.grid(row=5, column=1)
     e7.grid(row=6, column=1)
     e8.grid(row=7, column=1)
-    e8.grid(row=8, column=1)
+    e9.grid(row=8, column=1)
 
     # User anlegen/speichern
     def save():
