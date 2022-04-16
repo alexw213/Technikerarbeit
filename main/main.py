@@ -107,6 +107,7 @@ def register():
     Label(popup, text='Telefonnummer').grid(row=5)
     Label(popup, text='E-Mail').grid(row=6)
     Label(popup, text='RFID-Tag').grid(row=7)
+    Label(popup, text='PID-Nummer').grid(row=8)
 
     e1 = Entry(popup)
     e2 = Entry(popup)
@@ -116,6 +117,7 @@ def register():
     e6 = Entry(popup)
     e7 = Entry(popup)
     e8 = Entry(popup)
+    e9 = Entry(popup)
 
     e1.grid(row=0, column=1)
     e2.grid(row=1, column=1)
@@ -125,6 +127,7 @@ def register():
     e6.grid(row=5, column=1)
     e7.grid(row=6, column=1)
     e8.grid(row=7, column=1)
+    e8.grid(row=8, column=1)
 
     # User anlegen/speichern
     def save():
@@ -137,9 +140,10 @@ def register():
         e6s = e6.get()
         e7s = e7.get()
         e8s = e8.get()
+        e9s = e9.get()
 
         # User in die Datenbank einpflegen
-        write_db.write_user(e1s, e2s, e3s, e4s, e5s, e6s, e7s, e8s)
+        write_db.write_user(e1s, e2s, e3s, e4s, e5s, e6s, e7s, e8s, e9s)
         popup.destroy()  # Registrierungfenster wird geschlossen
 
         messagebox.showinfo(title=None, message="Mitarbeiter erfolgreich registriert!")
@@ -148,7 +152,7 @@ def register():
     b1 = tk.Button(popup,
                    text='Bestätigen',
                    command=save)
-    b1.grid(row=8, column=1)
+    b1.grid(row=9, column=1)
 
     # Foto erstellen
     def picture():
@@ -165,13 +169,13 @@ def register():
         # neues Foto im Registrierungspopup anzeigen
         panel = Label(popup, image=new_image) # Labelobjekt "panel" wird erstellt
         panel.image = new_image # In die Imagevariable wird das neue Bild eingefügt
-        panel.grid(row=9, column=1)
+        panel.grid(row=10, column=1)
 
     # Kamera wird ausgelöst
     b2 = tk.Button(popup,
                    text='Foto',
                    command=picture)
-    b2.grid(row=8, column=2)
+    b2.grid(row=9, column=2)
 
 
 registrieren = Button(root, text='Registrierung',
