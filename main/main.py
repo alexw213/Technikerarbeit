@@ -1,3 +1,4 @@
+
 import tkinter as tk  # tkinter abkürzen mit tk
 from tkinter import *  # Importierung der ttk-Widgets
 from tkinter import messagebox # Einfügen einer Messagebox in der GUI
@@ -42,6 +43,7 @@ def chip_in():
     # Anzeigereihenfolge festsetzen in der Messagebox
     strdate = str(datet.day) + "." + str(datet.month) + "." + str(datet.year) + "  " + str(datet.hour) +\
               ":" + str(minute)
+
 
     messagebox.showinfo(title=None, message="Einen schönen Arbeitstag " + name + "!" + "\n" + "Zeitpunkt: " +
                                             str(strdate) + " Uhr")
